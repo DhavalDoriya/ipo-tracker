@@ -15,6 +15,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ID_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 IPO_TYPES = {"mainboard", "sme"}
 IPO_STATUSES = {"upcoming", "open", "closed", "listed"}
+FILING_STAGES = {"DRHP", "RHP"}
 BUYBACK_TYPES = {"tender", "open_market"}
 BUYBACK_STATUSES = {"upcoming", "open", "closed"}
 
@@ -116,6 +117,9 @@ def validate_coming_soon(doc):
             continue
         if ipo.get("type") not in IPO_TYPES:
             errors.append(f"{where}: type must be one of {sorted(IPO_TYPES)}")
+        if ipo.get("stage") not in (None, *FILING_STAGES):
+            errors.append(f"{where}: stage must be one of {sorted(FILING_STAGES)} or null")
+        check_dates(ipo, ("filed_date",), where, errors)
         check_url(ipo, where, errors)
     return errors
 

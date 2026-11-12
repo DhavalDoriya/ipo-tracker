@@ -57,14 +57,15 @@ Shared classes live in `global.css`: `.card`, `.btn`, `.btn-tonal`, `.rows`, `.a
 - **Hero** (home only): surface panel, `--radius-md`, holding the page title, a one-line summary and the search. The search box is the one prominent element on the page.
 - **Search + status chips** (`FilterBar`): pill search box, 52px, white on the panel; hover and focus lift it with `--shadow-card`. Chips are radio buttons with a status-coloured dot and a count: unselected = outlined, selected = primary-container. No result in a group shows "No IPOs here match your search."
 - **Card** (`.card`; `IpoCard`, `BuybackCard`): outlined, `--radius-md`. Hover: shadow replaces the border. Rows without data are left out rather than shown as a dash.
-- **Issue timeline** (in `IpoCard`): Opens, Closes, Lists. A dot and its connecting line fill with primary once that step has happened.
+- **Timeline** (`Timeline`): steps of a real sequence. A dot and its connecting line fill with primary once that step has happened. `IpoCard` uses Opens, Closes, Lists; `PipelineCard` uses Draft filed, Final filed, IPO dates.
+- **Pipeline card** (`PipelineCard`): avatar, company, a stage chip ("Draft filed" outlined, "Final filed" amber), the filing timeline and a link to the filing.
 - **Listing gain**: small pill after the listing price; success colours when up, danger when down, neutral at zero.
 - **Status chip**: pill, 12px; open = success, upcoming = warning, listed = info, closed = neutral outline.
 - **Avatar**: 40px circle with the company's initial; tone picked from the name so it is stable.
 - **Theme toggle**: 44px icon button; shows a moon in light, a sun in dark; `aria-label` names the theme it switches to.
 - **Footer**: link groups (Browse, Learn, Site) above the disclaimer and last-updated line.
 - **Button** (`.btn`): filled primary pill, min height 44px; `.btn-tonal` uses primary-container. Hover: shadow. One filled button per view at most.
-- **Rows** (`.rows`): bordered list for the pipeline, checklist hub and guides. Hover: surface.
+- **Rows** (`.rows`): bordered list for the checklist hub and guides. Hover: surface.
 - **Show all**: long lists show the first few items with a tonal "Show all N" button; searching or filtering always looks through everything.
 - **ChecklistTable**: column header on primary-container, section rows on surface; wrapped in a horizontally scrolling region with `tabindex="0"` and a label.
 - **Empty state**: muted sentence in place of the list ("No IPOs are open for bidding today.").

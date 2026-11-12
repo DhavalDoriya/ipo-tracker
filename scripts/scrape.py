@@ -321,6 +321,8 @@ def parse_filings(html, source, today):
                 "type": source["type"],
                 "exchange": None,
                 "expected": f"{source['stage']} filing, {d.day} {d:%b %Y}",
+                "stage": source["stage"],
+                "filed_date": filed,
                 "source_url": href if href and href.startswith("https://") else source["url"],
             }
         )

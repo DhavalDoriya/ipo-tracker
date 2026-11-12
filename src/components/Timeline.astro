@@ -1,0 +1,81 @@
+---
+// Steps of a real sequence (an issue's dates, a filing's stages). A dot fills once its step
+// has happened; the line to the next dot fills once that one has happened too.
+interface Props {
+  label: string;
+  steps: { label: string; value: string; done: boolean }[];
+}
+
+const { label, steps } = Astro.props;
+---
+
+<ol class="timeline" aria-label={label} style={`--steps: ${steps.length}`}>
+  {
+    steps.map((step, i) => (
+      <li class:list={{ done: step.done, through: step.done && steps[i + 1]?.done }}>
+        <span class="label">{step.label}</span>
+        <span class="value">{step.value}</span>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(var(--steps), 1fr);
+    margin-top: var(--space-5);
+    padding: var(--space-4) 0 0;
+    list-style: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  li {
+    position: relative;
+    padding-top: var(--space-4);
+  }
+
+  li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-pill);
+    border: 2px solid var(--color-text-muted);
+    background: var(--color-bg);
+    box-sizing: border-box;
+  }
+
+  li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 14px;
+    right: 4px;
+    height: 2px;
+    border-radius: var(--radius-pill);
+    background: var(--color-border);
+  }
+
+  li.done::before {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+  }
+
+  li.through::after {
+    background: var(--color-primary);
+  }
+
+  .label {
+    display: block;
+    font: var(--text-small);
+    color: var(--color-text-muted);
+  }
+
+  .value {
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+</style>

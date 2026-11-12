@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-12T10:41:50+00:00",
+  "updated_at": "2026-11-12T10:49:17+00:00",
   "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
     {
@@ -8,6 +8,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 12 Nov 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-11-12",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/hindustan-coca-cola-holdings-limited-drhp_105729.html"
     },
     {
@@ -16,6 +18,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 9 Nov 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-11-09",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/snva-traveltech-limited-udrhp_105682.html"
     },
     {
@@ -24,6 +28,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 7 Nov 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-11-07",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/sillverton-industries-limited-addendum-to-drhp_105681.html"
     },
     {
@@ -32,6 +38,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 4 Nov 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-11-04",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/south-eastern-coalfields-limited-drhp_105620.html"
     },
     {
@@ -40,6 +48,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 29 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-29",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/carlsberg-india-limited-udrhp-1_105485.html"
     },
     {
@@ -48,6 +58,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 27 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-27",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/intellius-recode-limited-notice-to-investors_105445.html"
     },
     {
@@ -56,6 +68,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 26 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-26",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/oravel-stays-limited-addendum-to-drhp_105418.html"
     },
     {
@@ -64,6 +78,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 26 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-26",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/integris-medtech-limited-addendum-to-drhp_105416.html"
     },
     {
@@ -72,6 +88,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 21 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-21",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/gamp-services-limited-drhp_105424.html"
     },
     {
@@ -80,6 +98,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 21 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-21",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/hunger-pangs-limited-drhp_105347.html"
     },
     {
@@ -88,6 +108,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 21 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-21",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/tablespace-technologies-limited-addendum-to-drhp_105343.html"
     },
     {
@@ -96,6 +118,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 14 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-14",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/paramotor-digital-technology-limited-udrhp-i_105258.html"
     },
     {
@@ -104,6 +128,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 13 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-13",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/soleos-energy-limited-drhp_105196.html"
     },
     {
@@ -112,6 +138,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 12 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-12",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/oswal-cables-limited-addendum-to-drhp_105234.html"
     },
     {
@@ -120,6 +148,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 10 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-10",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/matangi-rubber-limited-addendum-to-the-drhp_105143.html"
     },
     {
@@ -128,6 +158,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 7 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-07",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/grace-renewable-energy-limited-drhp_105099.html"
     },
     {
@@ -136,6 +168,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 7 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-07",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/integrum-energy-infrastructure-limited-drhp_105075.html"
     },
     {
@@ -144,6 +178,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 6 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-06",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/pm-cona-industries-limited_105041.html"
     },
     {
@@ -152,6 +188,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 6 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-06",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/pentacle-consultants-i-limited_105039.html"
     },
     {
@@ -160,6 +198,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 5 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-05",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/electromech-infraprojects-limited-drhp_105027.html"
     },
     {
@@ -168,6 +208,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 5 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-05",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/baanganga-gold-and-diamond-i-limited-drhp_105025.html"
     },
     {
@@ -176,6 +218,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 5 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-05",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/inox-air-products-limited-drhp_105024.html"
     },
     {
@@ -184,6 +228,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 5 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-05",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/b-s-sponge-limited-drhp_105023.html"
     },
     {
@@ -192,6 +238,8 @@
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 5 Oct 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-10-05",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/everbrands-india-limited-drhp_105022.html"
     }
   ]

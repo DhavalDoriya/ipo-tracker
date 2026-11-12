@@ -44,6 +44,9 @@ export interface ComingSoonIpo {
   exchange: string | null;
   /** Free text: an expected month, or the latest filing such as 'RHP filing, 26 Oct 2026'. */
   expected: string | null;
+  /** Latest offer document on record: draft (DRHP) or final (RHP). */
+  stage?: 'DRHP' | 'RHP' | null;
+  filed_date?: string | null;
   source_url: string | null;
 }
 

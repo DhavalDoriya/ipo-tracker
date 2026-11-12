@@ -1,6 +1,7 @@
 ---
 import Avatar from './Avatar.astro';
 import StatusChip from './StatusChip.astro';
+import Timeline from './Timeline.astro';
 import type { IpoWithGmp } from '../lib/data';
 import { formatDayMonth, formatInr, formatNumber, formatPriceBand, listingGain } from '../lib/format';
 import { url } from '../lib/url';
@@ -19,9 +20,9 @@ const gain = listingGain(price?.max, ipo.list_price);
 // How far the issue has got: 0 = announced, 1 = opened, 2 = closed, 3 = listed.
 const reached = { upcoming: 0, open: 1, closed: 2, listed: 3 }[ipo.status];
 const steps = [
-  { label: 'Opens', date: ipo.open_date },
-  { label: 'Closes', date: ipo.close_date },
-  { label: 'Lists', date: ipo.listing_date },
+  { label: 'Opens', value: formatDayMonth(ipo.open_date), done: reached > 0 },
+  { label: 'Closes', value: formatDayMonth(ipo.close_date), done: reached > 1 },
+  { label: 'Lists', value: formatDayMonth(ipo.listing_date), done: reached > 2 },
 ];
 const sourceHost = ipo.source_url ? new URL(ipo.source_url).hostname.replace(/^www\./, '') : null;
 ---
@@ -102,16 +103,7 @@ const sourceHost = ipo.source_url ? new URL(ipo.source_url).hostname.replace(/^w
       )
     }
 
-    <ol class="timeline" aria-label="Issue dates">
-      {
-        steps.map((step, i) => (
-          <li class:list={{ done: reached > i, through: reached > i + 1 }}>
-            <span class="label">{step.label}</span>
-            <span class="date">{formatDayMonth(step.date)}</span>
-          </li>
-        ))
-      }
-    </ol>
+    <Timeline label="Issue dates" steps={steps} />
 
     {
       (checklistSlug || ipo.source_url) && (
@@ -189,65 +181,6 @@ const sourceHost = ipo.source_url ? new URL(ipo.source_url).hostname.replace(/^w
   .breakup {
     margin-top: var(--space-2);
     font: var(--text-small);
-  }
-
-  /* Open -> close -> listing. A dot fills once that step has happened. */
-  .timeline {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: var(--space-5);
-    padding: var(--space-4) 0 0;
-    list-style: none;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .timeline li {
-    position: relative;
-    padding-top: var(--space-4);
-  }
-
-  .timeline li::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 10px;
-    height: 10px;
-    border-radius: var(--radius-pill);
-    border: 2px solid var(--color-text-muted);
-    background: var(--color-bg);
-    box-sizing: border-box;
-  }
-
-  .timeline li:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 4px;
-    left: 14px;
-    right: 4px;
-    height: 2px;
-    border-radius: var(--radius-pill);
-    background: var(--color-border);
-  }
-
-  .timeline li.done::before {
-    border-color: var(--color-primary);
-    background: var(--color-primary);
-  }
-
-  .timeline li.through::after {
-    background: var(--color-primary);
-  }
-
-  .label {
-    display: block;
-    font: var(--text-small);
-    color: var(--color-text-muted);
-  }
-
-  .date {
-    font-weight: 500;
-    font-variant-numeric: tabular-nums;
   }
 
   .links {

@@ -1,0 +1,103 @@
+---
+import Avatar from './Avatar.astro';
+import Timeline from './Timeline.astro';
+import type { ComingSoonIpo } from '../lib/data';
+import { formatDayMonth } from '../lib/format';
+
+interface Props {
+  ipo: ComingSoonIpo;
+  hidden?: boolean;
+}
+
+const { ipo, hidden = false } = Astro.props;
+const filed = ipo.filed_date ? formatDayMonth(ipo.filed_date) : 'Filed';
+const atRhp = ipo.stage === 'RHP';
+
+// Draft (DRHP) -> final prospectus (RHP) -> issue dates. Only shown when the stage is known.
+const steps = ipo.stage && [
+  { label: 'Draft filed', value: atRhp ? 'Done' : filed, done: true },
+  { label: 'Final filed', value: atRhp ? filed : 'Awaited', done: atRhp },
+  { label: 'IPO dates', value: 'Awaited', done: false },
+];
+const sourceHost = ipo.source_url ? new URL(ipo.source_url).hostname.replace(/^www\./, '') : null;
+---
+
+<li class="card" data-ipo-card data-name={ipo.name.toLowerCase()} data-status="upcoming" hidden={hidden}>
+  <article>
+    <header>
+      <Avatar name={ipo.name} />
+      <div class="title">
+        <h3>{ipo.name}</h3>
+        <p class="muted meta">
+          {ipo.type === 'sme' ? 'SME' : 'Mainboard'}{ipo.exchange && `, ${ipo.exchange}`}
+        </p>
+      </div>
+      {ipo.stage && <span class:list={['stage', { rhp: atRhp }]}>{atRhp ? 'Final filed' : 'Draft filed'}</span>}
+    </header>
+
+    {steps ? <Timeline label="Filing stages" steps={steps} /> : <p class="expected">{ipo.expected ?? 'Dates awaited'}</p>}
+
+    {
+      ipo.source_url && (
+        <p class="links">
+          <a href={ipo.source_url} rel="noopener noreferrer">
+            View filing on {sourceHost}
+          </a>
+        </p>
+      )
+    }
+  </article>
+</li>
+
+<style>
+  header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .title {
+    flex: 1;
+    min-width: 0;
+  }
+
+  h3 {
+    overflow-wrap: anywhere;
+  }
+
+  .meta {
+    font: var(--text-small);
+  }
+
+  .stage {
+    padding: 2px var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    font: var(--text-small);
+    font-weight: 500;
+    white-space: nowrap;
+    color: var(--color-text-muted);
+  }
+
+  .stage.rhp {
+    border-color: transparent;
+    background: var(--color-warning-bg);
+    color: var(--color-warning);
+  }
+
+  .expected {
+    margin-top: var(--space-4);
+    font-weight: 500;
+  }
+
+  .links {
+    margin-top: var(--space-2);
+  }
+
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch);
+    font-weight: 500;
+  }
+</style>

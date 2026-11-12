@@ -183,6 +183,8 @@ class ParseFilingsTests(unittest.TestCase):
     def test_entry_fields(self):
         alpha, beta = self.entries
         self.assertEqual(alpha["expected"], "DRHP filing, 9 Nov 2026")
+        self.assertEqual(alpha["stage"], "DRHP")
+        self.assertEqual(alpha["filed_date"], "2026-11-09")
         self.assertEqual(alpha["source_url"], "https://example.gov/filings/alpha-udrhp_1.html")
         self.assertEqual(beta["name"], "Beta Coated And Special Steels Limited")
         # relative link falls back to the list page
