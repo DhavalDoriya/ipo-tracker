@@ -112,8 +112,12 @@ NEXT_SOURCE = {
 class ParseNextDataTests(unittest.TestCase):
     def setUp(self):
         with open(os.path.join(HERE, "fixtures", "next_data.html"), encoding="utf-8") as f:
-            self.ipos = scrape.parse_next_data(f.read(), NEXT_SOURCE, "2026-11-12")
+            self.all = scrape.parse_next_data(f.read(), NEXT_SOURCE, "2026-11-12")
+        self.ipos = [i for i in self.all if not i.get("_archived")]
         self.by_id = {i["id"]: i for i in self.ipos}
+
+    def test_old_issues_are_kept_only_as_archived(self):
+        self.assertEqual([i["id"] for i in self.all if i.get("_archived")], ["old-co"])
 
     def test_keeps_dated_and_recent_only(self):
         self.assertEqual(
@@ -190,6 +194,23 @@ class ParseFilingsTests(unittest.TestCase):
 
         doc = {"updated_at": "2026-11-12T09:30:00+00:00", "source": "Fixture", "ipos": self.entries}
         self.assertEqual(validate.validate_coming_soon(doc), [])
+
+
+class KnownCompanyTests(unittest.TestCase):
+    def test_company_key(self):
+        self.assertEqual(scrape.company_key("Bombay Coated & Special Steels"), "bombay coated and special steels")
+        self.assertEqual(scrape.company_key("SFC Environmental Technologies Ltd."), "sfc environmental technologies")
+
+    def test_is_known(self):
+        known = {"bombay coated and special steels", "bls polymers", "tata", "zetwerk"}
+        self.assertTrue(scrape.is_known("Zetwerk Manufacturing Businesses Limited", known))
+        self.assertTrue(scrape.is_known("Bombay Coated And Special Steels Limited", known))
+        self.assertTrue(scrape.is_known("BLS Polymers Limited", known))
+        # a longer legal name still matches a two-word-or-more short name
+        self.assertTrue(scrape.is_known("BLS Polymers India Limited", known))
+        # a short one-word name must match exactly
+        self.assertFalse(scrape.is_known("Tata Capital Limited", known))
+        self.assertFalse(scrape.is_known("Carlsberg India Limited", known))
 
 
 class UnchangedTests(unittest.TestCase):

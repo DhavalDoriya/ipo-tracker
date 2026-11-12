@@ -1,55 +1,7 @@
 {
-  "updated_at": "2026-11-12T10:15:38+00:00",
+  "updated_at": "2026-11-12T10:41:50+00:00",
   "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
-    {
-      "id": "sfc-environmental-technologies-ltd",
-      "name": "SFC Environmental Technologies Ltd.",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "RHP filing, 26 Oct 2026",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/sfc-environmental-technologies-ltd-addendum-to-rhp_105430.html"
-    },
-    {
-      "id": "bls-polymers-limited",
-      "name": "BLS Polymers Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "RHP filing, 26 Oct 2026",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/bls-polymers-limited-addendum-to-rhp-and-price-band_105419.html"
-    },
-    {
-      "id": "bombay-coated-and-special-steels-limited",
-      "name": "Bombay Coated And Special Steels Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "RHP filing, 21 Oct 2026",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/bombay-coated-and-special-steels-limited-rhp_105447.html"
-    },
-    {
-      "id": "zetwerk-manufacturing-businesses-limited",
-      "name": "Zetwerk Manufacturing Businesses Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "RHP filing, 19 Oct 2026",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/zetwerk-manufacturing-businesses-limited-addendum-to-rhp_105325.html"
-    },
-    {
-      "id": "paras-healthcare-limited",
-      "name": "Paras Healthcare Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "RHP filing, 15 Oct 2026",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/paras-healthcare-limited-rhp_105284.html"
-    },
-    {
-      "id": "jio-platforms-limited",
-      "name": "Jio Platforms Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "RHP filing, 15 Oct 2026",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/jio-platforms-limited-rhp_105274.html"
-    },
     {
       "id": "hindustan-coca-cola-holdings-limited",
       "name": "Hindustan Coca-Cola Holdings Limited",

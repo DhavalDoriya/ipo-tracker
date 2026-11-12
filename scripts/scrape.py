@@ -42,6 +42,27 @@ def slugify(name):
     return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
 
 
+def company_key(name):
+    """Name reduced for matching across sources: 'Acme & Sons Ltd.' -> 'acme and sons'."""
+    words = re.sub(r"[^a-z0-9 ]+", " ", name.lower().replace("&", " and ")).split()
+    return " ".join(w for w in words if w not in {"limited", "ltd", "the"})
+
+
+def is_known(name, known_keys):
+    """True when `name` is one of `known_keys`, allowing one to be a longer form of the other.
+
+    'Zetwerk' matches 'Zetwerk Manufacturing Businesses Limited'. A one-word short form must
+    be at least 6 letters, so a group name such as 'Tata' does not match every Tata company.
+    """
+    key = company_key(name)
+    for known in known_keys:
+        short, long_ = sorted((key, known), key=len)
+        distinctive = " " in short or len(short) >= 6
+        if short == long_ or (distinctive and long_.startswith(short + " ")):
+            return True
+    return False
+
+
 def parse_date(text, fmt):
     """Source date text -> 'YYYY-MM-DD', or None when empty or unparseable."""
     text = (text or "").strip()
@@ -196,8 +217,9 @@ def _first(item, *keys):
 def parse_next_data(html, source, today):
     """Parse IPO lists embedded in a page's __NEXT_DATA__ JSON (open, upcoming, closed).
 
-    Undated upcoming issues are skipped (coming_soon.json covers the pipeline) and closed
-    issues older than `max_age_days` are dropped.
+    Undated upcoming issues are skipped (coming_soon.json covers the pipeline). Closed
+    issues older than `max_age_days` are returned with "_archived": True: they are not
+    published, but they tell the pipeline list which companies have already had their IPO.
     """
     from bs4 import BeautifulSoup
 
@@ -221,8 +243,7 @@ def parse_next_data(html, source, today):
             listing_date = _first(item, "listingDate") or _ms_to_date(item.get("listingTimestamp"))
             if list_key == "upcomingDataList" and not open_date:
                 continue
-            if list_key == "closedDataList" and (not close_date or close_date < cutoff):
-                continue
+            archived = list_key == "closedDataList" and (not close_date or close_date < cutoff)
             low = _first(item, "minPrice", "issuePrice")
             high = _first(item, "maxPrice", "issuePrice")
             subscription = item.get("overallSubscription")
@@ -249,6 +270,8 @@ def parse_next_data(html, source, today):
                     "source_url": f"{source['detail_url']}{search_id}" if search_id else source["url"],
                 }
             )
+            if archived:
+                ipos[-1]["_archived"] = True
     return ipos
 
 
@@ -357,9 +380,17 @@ def write_json(path, payload):
     os.replace(tmp, path)
 
 
-def update_coming_soon(filings, today):
-    """Refresh data/coming_soon.json from regulator filing lists."""
+def update_coming_soon(filings, today, known_keys=()):
+    """Refresh data/coming_soon.json from regulator filing lists.
+
+    Companies in `known_keys` already have an IPO on record (dated, open, closed or listed),
+    so they are no longer "in the pipeline" and are left out.
+    """
     entries = scrape(filings, today, parse=parse_filings)
+    if entries:
+        kept = [e for e in entries if not is_known(e["name"], known_keys)]
+        print(f"[info] pipeline: dropped {len(entries) - len(kept)} companies that already have an IPO on record")
+        entries = kept
     if not entries:
         print("[error] no filings from any source; coming_soon.json left as is")
         return 1
@@ -384,17 +415,19 @@ def main():
         return 0
     today = date.today().isoformat()
     status = 0
-    if filings:
-        status |= update_coming_soon(filings, today)
+    known_keys = set()
     if sources:
-        status |= update_ipos(sources, today)
+        found = scrape(sources, today)
+        known_keys = {company_key(i["name"]) for i in found}
+        status |= update_ipos(sources, [i for i in found if not i.get("_archived")])
     else:
         print("[info] no IPO sources configured; ipos.json left as is")
+    if filings:
+        status |= update_coming_soon(filings, today, known_keys)
     return status
 
 
-def update_ipos(sources, today):
-    ipos = scrape(sources, today)
+def update_ipos(sources, ipos):
     if not ipos:
         print("[error] no data from any source; data left as is")
         return 1
