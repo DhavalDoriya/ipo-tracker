@@ -41,7 +41,8 @@ export interface ComingSoonIpo {
   id: string;
   name: string;
   type: IpoType;
-  exchange: string;
+  exchange: string | null;
+  /** Free text: an expected month, or the latest filing such as 'RHP filing, 26 Oct 2026'. */
   expected: string | null;
   source_url: string | null;
 }
@@ -105,8 +106,14 @@ export function loadIpos(): IpoWithGmp[] {
   });
 }
 
-export function loadComingSoon(): ComingSoonIpo[] {
-  return readJson<{ ipos: ComingSoonIpo[] }>('coming_soon.json').ipos;
+export interface ComingSoonFile {
+  updated_at: string;
+  source?: string;
+  ipos: ComingSoonIpo[];
+}
+
+export function loadComingSoon(): ComingSoonFile {
+  return readJson<ComingSoonFile>('coming_soon.json');
 }
 
 export function loadBuybacks(): BuybacksFile {

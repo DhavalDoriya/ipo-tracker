@@ -1,21 +1,246 @@
 {
-  "updated_at": "2026-11-12T09:30:00+00:00",
+  "updated_at": "2026-11-12T09:34:00+00:00",
+  "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
     {
-      "id": "sample-deccan-semicon",
-      "name": "Deccan Semicon (Sample)",
+      "id": "sfc-environmental-technologies-ltd",
+      "name": "SFC Environmental Technologies Ltd.",
       "type": "mainboard",
-      "exchange": "NSE, BSE",
-      "expected": "December 2026",
-      "source_url": null
+      "exchange": null,
+      "expected": "RHP filing, 26 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/sfc-environmental-technologies-ltd-addendum-to-rhp_105430.html"
     },
     {
-      "id": "sample-konkan-agro",
-      "name": "Konkan Agro Exports (Sample)",
-      "type": "sme",
-      "exchange": "NSE SME",
-      "expected": null,
-      "source_url": null
+      "id": "bls-polymers-limited",
+      "name": "BLS Polymers Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "RHP filing, 26 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/bls-polymers-limited-addendum-to-rhp-and-price-band_105419.html"
+    },
+    {
+      "id": "bombay-coated-and-special-steels-limited",
+      "name": "Bombay Coated And Special Steels Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "RHP filing, 21 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/bombay-coated-and-special-steels-limited-rhp_105447.html"
+    },
+    {
+      "id": "zetwerk-manufacturing-businesses-limited",
+      "name": "Zetwerk Manufacturing Businesses Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "RHP filing, 19 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/zetwerk-manufacturing-businesses-limited-addendum-to-rhp_105325.html"
+    },
+    {
+      "id": "paras-healthcare-limited",
+      "name": "Paras Healthcare Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "RHP filing, 15 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/paras-healthcare-limited-rhp_105284.html"
+    },
+    {
+      "id": "jio-platforms-limited",
+      "name": "Jio Platforms Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "RHP filing, 15 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/jio-platforms-limited-rhp_105274.html"
+    },
+    {
+      "id": "snva-traveltech-limited",
+      "name": "SNVA Traveltech Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 9 Nov 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/snva-traveltech-limited-udrhp_105682.html"
+    },
+    {
+      "id": "sillverton-industries-limited",
+      "name": "Sillverton Industries Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 7 Nov 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/sillverton-industries-limited-addendum-to-drhp_105681.html"
+    },
+    {
+      "id": "south-eastern-coalfields-limited",
+      "name": "South Eastern Coalfields Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 4 Nov 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/south-eastern-coalfields-limited-drhp_105620.html"
+    },
+    {
+      "id": "carlsberg-india-limited",
+      "name": "Carlsberg India Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 29 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/carlsberg-india-limited-udrhp-1_105485.html"
+    },
+    {
+      "id": "intellius-recode-limited",
+      "name": "Intellius Recode Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 27 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/intellius-recode-limited-notice-to-investors_105445.html"
+    },
+    {
+      "id": "oravel-stays-limited",
+      "name": "Oravel Stays Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 26 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/oravel-stays-limited-addendum-to-drhp_105418.html"
+    },
+    {
+      "id": "integris-medtech-limited",
+      "name": "Integris Medtech Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 26 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/integris-medtech-limited-addendum-to-drhp_105416.html"
+    },
+    {
+      "id": "gamp-services-limited",
+      "name": "GAMP Services Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 21 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/gamp-services-limited-drhp_105424.html"
+    },
+    {
+      "id": "hunger-pangs-limited",
+      "name": "Hunger Pangs Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 21 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/hunger-pangs-limited-drhp_105347.html"
+    },
+    {
+      "id": "tablespace-technologies-limited",
+      "name": "Tablespace Technologies Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 21 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/tablespace-technologies-limited-addendum-to-drhp_105343.html"
+    },
+    {
+      "id": "paramotor-digital-technology-limited",
+      "name": "Paramotor Digital Technology Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 14 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/paramotor-digital-technology-limited-udrhp-i_105258.html"
+    },
+    {
+      "id": "soleos-energy-limited",
+      "name": "Soleos Energy Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 13 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/soleos-energy-limited-drhp_105196.html"
+    },
+    {
+      "id": "oswal-cables-limited",
+      "name": "Oswal Cables Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 12 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/oswal-cables-limited-addendum-to-drhp_105234.html"
+    },
+    {
+      "id": "matangi-rubber-limited",
+      "name": "Matangi Rubber Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 10 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/matangi-rubber-limited-addendum-to-the-drhp_105143.html"
+    },
+    {
+      "id": "grace-renewable-energy-limited",
+      "name": "Grace Renewable Energy Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 7 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/grace-renewable-energy-limited-drhp_105099.html"
+    },
+    {
+      "id": "integrum-energy-infrastructure-limited",
+      "name": "Integrum Energy Infrastructure Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 7 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/integrum-energy-infrastructure-limited-drhp_105075.html"
+    },
+    {
+      "id": "pm-cona-industries-limited",
+      "name": "Pm Cona Industries Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 6 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/pm-cona-industries-limited_105041.html"
+    },
+    {
+      "id": "pentacle-consultants-i-limited",
+      "name": "Pentacle Consultants I Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 6 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/pentacle-consultants-i-limited_105039.html"
+    },
+    {
+      "id": "electromech-infraprojects-limited",
+      "name": "Electromech Infraprojects Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 5 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/electromech-infraprojects-limited-drhp_105027.html"
+    },
+    {
+      "id": "baanganga-gold-diamond-i-limited",
+      "name": "Baanganga Gold & Diamond (I) Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 5 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/baanganga-gold-and-diamond-i-limited-drhp_105025.html"
+    },
+    {
+      "id": "inox-air-products-limited",
+      "name": "Inox Air Products Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 5 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/inox-air-products-limited-drhp_105024.html"
+    },
+    {
+      "id": "b-s-sponge-limited",
+      "name": "B S Sponge Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 5 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/b-s-sponge-limited-drhp_105023.html"
+    },
+    {
+      "id": "everbrands-india-limited",
+      "name": "Everbrands India Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 5 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/everbrands-india-limited-drhp_105022.html"
+    },
+    {
+      "id": "arete-22-limited",
+      "name": "Arete 22 Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 5 Oct 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/arete-22-limited-drhp_105016.html"
     }
   ]
 }

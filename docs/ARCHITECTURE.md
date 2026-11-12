@@ -56,4 +56,7 @@ GitHub Actions cron ──> scripts/scrape.py ──> data/*.json ──> valida
 | Scraper writes nothing when content is unchanged | Avoids a commit and deploy every 30 minutes |
 | Build-time data only | Keeps pages static and fast; freshness comes from redeploys |
 | No UI framework, no Tailwind | Nothing here needs them; fewer moving parts |
-| Sample data ships in `data/` | Site works before a scraper source is approved |
+| Sample data ships in `data/ipos.json` | No free source carries IPO details and also permits automated collection (see below) |
+| `coming_soon.json` comes from SEBI's public issue filing lists | Regulator's own public record; robots.txt allows it; plain HTML with an honest User-Agent |
+| NSE, BSE, Chittorgarh, InvestorGain, Zerodha not used | They need cookies / a browser User-Agent or refuse the scraper's robots.txt request |
+| Moneycontrol, Groww, Upstox not used | Their terms of use prohibit scrapers or reuse without written permission |

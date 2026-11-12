@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { loadIposFile } from '../lib/data';
+import { loadComingSoon, loadIposFile } from '../lib/data';
 import { formatUpdated } from '../lib/format';
 
 const { source, updated_at, sample } = loadIposFile();
+const pipelineSource = loadComingSoon().source;
 ---
 
 <BaseLayout title="About" description="What IPO Update is, where its data comes from, and its limits.">
@@ -28,7 +29,8 @@ const { source, updated_at, sample } = loadIposFile();
 
     <h2>Sources</h2>
     <ul>
-      <li>Current data source: {source}.</li>
+      <li>IPO cards (dates, price, subscription): {source}.</li>
+      {pipelineSource && <li>Pipeline list on the home page: {pipelineSource} (sebi.gov.in), collected automatically.</li>}
       <li>Last updated: <time datetime={updated_at}>{formatUpdated(updated_at)}</time>.</li>
       <li>GMP, where shown, is entered by hand from unofficial market talk.</li>
       <li>Checklist guidance is written for this site from publicly known analysis practice.</li>
@@ -36,8 +38,8 @@ const { source, updated_at, sample } = loadIposFile();
     {
       sample && (
         <p>
-          The site currently shows sample data while a data source that permits automated access is
-          being confirmed.
+          The IPO cards currently show sample data. No free source was found that both carries those
+          details and permits automated collection, so they are maintained by hand.
         </p>
       )
     }

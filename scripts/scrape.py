@@ -1,4 +1,4 @@
-"""Collect IPO data from the sources in scripts/sources.json and write data/ipos.json.
+"""Collect IPO data from scripts/sources.json: `sources` -> data/ipos.json, `filings` -> data/coming_soon.json.
 
 Rules (docs/SECURITY.md): obey robots.txt, at most 1 request per second, honest User-Agent.
 Nothing is written when the content is unchanged, so the workflow only commits real changes.
@@ -9,14 +9,21 @@ import os
 import re
 import sys
 import time
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from urllib import robotparser
 from urllib.parse import urlsplit
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(ROOT, "data")
 OUT = os.path.join(DATA_DIR, "ipos.json")
+COMING_SOON_OUT = os.path.join(DATA_DIR, "coming_soon.json")
 SOURCES_FILE = os.path.join(ROOT, "scripts", "sources.json")
+
+# Splits a filing title at the dash before the document type: "Acme Ltd - DRHP ...".
+FILING_SPLIT_RE = re.compile(
+    r"\s*[-–—:]\s*(?=(?:U?DRHP|RHP|Addendum|Corrigendum|Draft|Prospectus|Abridged|Notice|Public)\b)",
+    re.I,
+)
 
 USER_AGENT = "ipo-update-bot/0.1 (+https://github.com/DhavalDoriya/ipo-update)"
 MIN_INTERVAL = 1.0  # seconds between requests
@@ -170,14 +177,64 @@ def fetch(url, retries=3):
     return None
 
 
-def load_sources():
+def clean_filing_title(title):
+    """'ACME LIMITED- RHP ACME LIMITED - Abridged...' -> 'Acme Limited'; None when no name is left."""
+    name = FILING_SPLIT_RE.split(title or "", maxsplit=1)[0].strip(" -–—:")
+    if not name:
+        return None
+    return name.title() if name.isupper() else name
+
+
+def parse_filings(html, source, today):
+    """Parse a regulator filing list (Date | Title, newest first) into coming-soon entries.
+
+    One entry per company; filings older than `max_age_days` are dropped because the
+    issue has usually opened or lapsed by then.
+    """
+    from bs4 import BeautifulSoup
+
+    table = BeautifulSoup(html, "html.parser").select_one(source.get("table_selector", "table"))
+    if table is None:
+        return []
+    cutoff = (date.fromisoformat(today) - timedelta(days=source["max_age_days"])).isoformat()
+    entries, seen = [], set()
+    for row in table.find_all("tr"):
+        cells = row.find_all("td")
+        if len(cells) < 2:
+            continue
+        filed = parse_date(cells[0].get_text(" ", strip=True), source.get("date_format", "%b %d, %Y"))
+        name = clean_filing_title(cells[1].get_text(" ", strip=True))
+        if not filed or not name or filed < cutoff or filed > today:
+            continue
+        entry_id = slugify(name)
+        if not entry_id or entry_id in seen:
+            continue
+        seen.add(entry_id)
+        link = row.find("a")
+        href = link.get("href") if link else None
+        d = date.fromisoformat(filed)
+        entries.append(
+            {
+                "id": entry_id,
+                "name": name,
+                "type": source["type"],
+                "exchange": None,
+                "expected": f"{source['stage']} filing, {d.day} {d:%b %Y}",
+                "source_url": href if href and href.startswith("https://") else source["url"],
+            }
+        )
+    return entries
+
+
+def load_config():
     with open(SOURCES_FILE, encoding="utf-8") as f:
-        return json.load(f)["sources"]
+        config = json.load(f)
+    return config.get("sources", []), config.get("filings", [])
 
 
-def scrape(sources, today):
-    """Run every source; a failing source is skipped, not fatal."""
-    ipos, seen = [], set()
+def scrape(sources, today, parse=parse_table):
+    """Run every source through `parse`; a failing source is skipped, not fatal."""
+    items, seen = [], set()
     for source in sources:
         if not source["url"].startswith("https://"):
             print(f"[warn] {source['name']}: url must be https; skipped")
@@ -188,13 +245,13 @@ def scrape(sources, today):
         html = fetch(source["url"])
         if html is None:
             continue
-        found = parse_table(html, source, today)
-        print(f"[info] {source['name']}: {len(found)} IPOs")
-        for ipo in found:
-            if ipo["id"] not in seen:
-                seen.add(ipo["id"])
-                ipos.append(ipo)
-    return ipos
+        found = parse(html, source, today)
+        print(f"[info] {source['name']}: {len(found)} entries")
+        for item in found:
+            if item["id"] not in seen:
+                seen.add(item["id"])
+                items.append(item)
+    return items
 
 
 def is_unchanged(existing, ipos, source_label):
@@ -206,6 +263,13 @@ def is_unchanged(existing, ipos, source_label):
     )
 
 
+def read_json(path):
+    if not os.path.exists(path):
+        return None
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
 def write_json(path, payload):
     """Atomic write: a crash never leaves a half-written file."""
     tmp = path + ".tmp"
@@ -215,23 +279,50 @@ def write_json(path, payload):
     os.replace(tmp, path)
 
 
-def main():
-    sources = load_sources()
-    if not sources:
-        print("[info] no sources configured in scripts/sources.json; data left as is")
+def update_coming_soon(filings, today):
+    """Refresh data/coming_soon.json from regulator filing lists."""
+    entries = scrape(filings, today, parse=parse_filings)
+    if not entries:
+        print("[error] no filings from any source; coming_soon.json left as is")
+        return 1
+    source_label = ", ".join(s["name"] for s in filings)
+    if is_unchanged(read_json(COMING_SOON_OUT), entries, source_label):
+        print("[ok] coming_soon.json: no change")
         return 0
+    payload = {
+        "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "source": source_label,
+        "ipos": entries,
+    }
+    write_json(COMING_SOON_OUT, payload)
+    print(f"[ok] coming_soon.json: wrote {len(entries)} entries")
+    return 0
 
-    ipos = scrape(sources, date.today().isoformat())
+
+def main():
+    sources, filings = load_config()
+    if not sources and not filings:
+        print("[info] nothing configured in scripts/sources.json; data left as is")
+        return 0
+    today = date.today().isoformat()
+    status = 0
+    if filings:
+        status |= update_coming_soon(filings, today)
+    if sources:
+        status |= update_ipos(sources, today)
+    else:
+        print("[info] no IPO sources configured; ipos.json left as is")
+    return status
+
+
+def update_ipos(sources, today):
+    ipos = scrape(sources, today)
     if not ipos:
         print("[error] no data from any source; data left as is")
         return 1
 
     source_label = ", ".join(s["name"] for s in sources)
-    existing = None
-    if os.path.exists(OUT):
-        with open(OUT, encoding="utf-8") as f:
-            existing = json.load(f)
-    if is_unchanged(existing, ipos, source_label):
+    if is_unchanged(read_json(OUT), ipos, source_label):
         print("[ok] no change")
         return 0
 

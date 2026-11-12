@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import IpoList from '../components/IpoList.astro';
 import { loadComingSoon, loadIpos, loadIposFile } from '../lib/data';
-import { formatUpdated, orDash } from '../lib/format';
+import { formatUpdated } from '../lib/format';
 import { url } from '../lib/url';
 
 const ipos = loadIpos();
@@ -10,7 +10,8 @@ const { updated_at } = loadIposFile();
 const open = ipos.filter((i) => i.status === 'open');
 const upcoming = ipos.filter((i) => i.status === 'upcoming');
 const recent = ipos.filter((i) => i.status === 'closed' || i.status === 'listed');
-const announced = loadComingSoon();
+const comingSoon = loadComingSoon();
+const announced = comingSoon.ipos;
 ---
 
 <BaseLayout
@@ -35,13 +36,25 @@ const announced = loadComingSoon();
     {
       announced.length > 0 && (
         <div class="announced">
-          <h3>Announced, dates awaited</h3>
+          <h3>In the pipeline, dates awaited</h3>
+          <p class="muted">
+            Offer documents filed but issue dates not announced. A filing does not mean the IPO will
+            happen.{comingSoon.source && ` Source: ${comingSoon.source}, updated ${formatUpdated(comingSoon.updated_at)}.`}
+          </p>
           <ul>
             {announced.map((a) => (
               <li>
-                <span class="name">{a.name}</span>
+                {a.source_url ? (
+                  <a class="name" href={a.source_url} rel="noopener noreferrer">
+                    {a.name}
+                  </a>
+                ) : (
+                  <span class="name">{a.name}</span>
+                )}
                 <span class="muted">
-                  {a.type === 'sme' ? 'SME' : 'Mainboard'} · {a.exchange} · Expected {orDash(a.expected)}
+                  {[a.type === 'sme' ? 'SME' : 'Mainboard', a.exchange, a.expected ?? 'Dates awaited']
+                    .filter(Boolean)
+                    .join(' · ')}
                 </span>
               </li>
             ))}
@@ -74,6 +87,8 @@ const announced = loadComingSoon();
   }
 
   .announced li {
+    align-items: center;
+    min-height: var(--touch);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

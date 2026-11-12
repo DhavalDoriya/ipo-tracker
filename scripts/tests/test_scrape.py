@@ -100,6 +100,50 @@ class ParseTableTests(unittest.TestCase):
         self.assertEqual(validate.validate_ipos(doc), [])
 
 
+FILINGS = {
+    "name": "Fixture filings",
+    "url": "https://example.gov/filings",
+    "stage": "DRHP",
+    "type": "mainboard",
+    "max_age_days": 90,
+}
+
+
+class ParseFilingsTests(unittest.TestCase):
+    def setUp(self):
+        with open(os.path.join(HERE, "fixtures", "filings.html"), encoding="utf-8") as f:
+            self.entries = scrape.parse_filings(f.read(), FILINGS, "2026-11-12")
+
+    def test_clean_filing_title(self):
+        self.assertEqual(scrape.clean_filing_title("Acme Ltd.- RHP Acme Ltd. - Abridged"), "Acme Ltd.")
+        self.assertEqual(scrape.clean_filing_title("ACME STEELS LIMITED - DRHP"), "Acme Steels Limited")
+        self.assertEqual(scrape.clean_filing_title("Hi-Tech Gears Limited – UDRHP-1"), "Hi-Tech Gears Limited")
+        self.assertEqual(scrape.clean_filing_title("Acme Limited : Addendum to RHP"), "Acme Limited")
+        self.assertEqual(scrape.clean_filing_title("ACME LIMITED - Notice to Investors"), "Acme Limited")
+        self.assertIsNone(scrape.clean_filing_title(" - DRHP"))
+
+    def test_one_entry_per_company_newest_first(self):
+        self.assertEqual(
+            [e["id"] for e in self.entries],
+            ["alpha-traveltech-limited", "beta-coated-and-special-steels-limited"],
+        )
+
+    def test_entry_fields(self):
+        alpha, beta = self.entries
+        self.assertEqual(alpha["expected"], "DRHP filing, 9 Nov 2026")
+        self.assertEqual(alpha["source_url"], "https://example.gov/filings/alpha-udrhp_1.html")
+        self.assertEqual(beta["name"], "Beta Coated And Special Steels Limited")
+        # relative link falls back to the list page
+        self.assertEqual(beta["source_url"], FILINGS["url"])
+        self.assertIsNone(beta["exchange"])
+
+    def test_output_passes_the_validator(self):
+        import validate
+
+        doc = {"updated_at": "2026-11-12T09:30:00+00:00", "source": "Fixture", "ipos": self.entries}
+        self.assertEqual(validate.validate_coming_soon(doc), [])
+
+
 class UnchangedTests(unittest.TestCase):
     def test_same_content_is_unchanged(self):
         ipos = [{"id": "a"}]

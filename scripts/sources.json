@@ -1,3 +1,19 @@
 {
-  "sources": []
+  "sources": [],
+  "filings": [
+    {
+      "name": "SEBI public issue filings (RHP)",
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&ssid=15&smid=11",
+      "stage": "RHP",
+      "type": "mainboard",
+      "max_age_days": 30
+    },
+    {
+      "name": "SEBI public issue filings (DRHP)",
+      "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&ssid=15&smid=10",
+      "stage": "DRHP",
+      "type": "mainboard",
+      "max_age_days": 90
+    }
+  ]
 }

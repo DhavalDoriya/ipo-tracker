@@ -12,7 +12,7 @@ There is no database. The data store is JSON files in `data/`, versioned by git.
 | File | Written by | Purpose |
 | --- | --- | --- |
 | `ipos.json` | scraper | Current and recent IPOs, mainboard + SME |
-| `coming_soon.json` | scraper / hand | Announced IPOs without dates |
+| `coming_soon.json` | scraper (SEBI filings) | IPOs in the pipeline: offer document filed, no dates yet |
 | `buybacks.json` | scraper / hand | Buyback calendar |
 | `gmp.json` | hand | Unofficial grey market premium, joined to IPOs by `id` |
 | `checklists/<slug>.json` | hand | One analysis checklist per IPO |
@@ -39,7 +39,7 @@ Top level: `updated_at`, `source`, optional `sample` (true while data is placeho
 | `source_url` | string \| null | |
 
 ## `coming_soon.json`
-`updated_at`, `ipos[]` of `{ id, name, type, exchange, expected, source_url }`.
+`updated_at`, `source`, `ipos[]` of `{ id, name, type, exchange, expected, source_url }`. `exchange` may be null. `expected` is free text: an expected month, or the latest filing (`"RHP filing, 26 Oct 2026"`). The scraper rewrites this file from the `filings` entries in `scripts/sources.json`; one entry per company, RHP stage first.
 
 ## `buybacks.json`
 `updated_at`, `buybacks[]` of `{ id, name, type ("tender" | "open_market"), record_date, open_date, close_date, buyback_price, status ("upcoming" | "open" | "closed") }`.

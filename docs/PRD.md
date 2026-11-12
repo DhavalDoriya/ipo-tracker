@@ -64,5 +64,5 @@ Retail investors in India check several sites to find which IPOs are open, their
 Home, Mainboard, SME, Buybacks, Checklist hub, Checklist detail, Guides (2), About.
 
 ## Open questions
-- Which public source is allowed to be scraped (robots.txt and terms decide). Until settled the site ships sample data.
+- IPO card details (dates, price band, subscription) have no permitted automated source yet (see the decision log in ARCHITECTURE.md). Options: maintain `data/ipos.json` by hand, or get written permission from a data provider. The pipeline list is automated from SEBI filings.
 - Final GitHub repo name (sets the URL base path).
