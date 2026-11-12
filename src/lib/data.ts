@@ -11,7 +11,7 @@ export interface Ipo {
   id: string;
   name: string;
   type: IpoType;
-  exchange: string;
+  exchange: string | null;
   status: IpoStatus;
   open_date: string | null;
   close_date: string | null;
@@ -60,6 +60,7 @@ export interface Buyback {
 
 export interface BuybacksFile {
   updated_at: string;
+  sample?: boolean;
   buybacks: Buyback[];
 }
 

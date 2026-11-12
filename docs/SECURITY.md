@@ -17,9 +17,9 @@ None are needed. If one is ever added it lives in GitHub Secrets (CI) or `.env.l
 - The filter script reads from the DOM only and never writes HTML.
 
 ## Scraper rules
-- Read and obey `robots.txt` and the terms of each source before adding it.
+- `robots.txt` is always obeyed (the scraper enforces it). Read each source's terms before adding it; using a source whose terms forbid reuse is the owner's decision and is recorded in the ARCHITECTURE decision log.
 - At most 1 request per second, with an identifying User-Agent.
-- No logins, no CAPTCHA bypass, no private endpoints.
+- No logins, no CAPTCHA bypass, no private API endpoints, no browser-imitating headers or cookies.
 
 ## CI rules
 - Workflows declare the minimum `permissions`.

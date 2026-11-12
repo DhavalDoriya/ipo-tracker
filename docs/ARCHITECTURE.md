@@ -56,7 +56,8 @@ GitHub Actions cron ──> scripts/scrape.py ──> data/*.json ──> valida
 | Scraper writes nothing when content is unchanged | Avoids a commit and deploy every 30 minutes |
 | Build-time data only | Keeps pages static and fast; freshness comes from redeploys |
 | No UI framework, no Tailwind | Nothing here needs them; fewer moving parts |
-| Sample data ships in `data/ipos.json` | No free source carries IPO details and also permits automated collection (see below) |
+| `ipos.json` comes from Groww's public IPO page (data embedded in the page HTML) | Owner's decision (12 Nov 2026): the data is publicly viewable. robots.txt allows the page and it answers a plain request. Groww's terms prohibit copying without consent, so this is an accepted risk: if Groww objects, remove the source |
 | `coming_soon.json` comes from SEBI's public issue filing lists | Regulator's own public record; robots.txt allows it; plain HTML with an honest User-Agent |
 | NSE, BSE, Chittorgarh, InvestorGain, Zerodha not used | They need cookies / a browser User-Agent or refuse the scraper's robots.txt request |
-| Moneycontrol, Groww, Upstox not used | Their terms of use prohibit scrapers or reuse without written permission |
+| Moneycontrol, Upstox not used | Their terms prohibit scrapers or reuse, and their plain HTML carries less than Groww's (Moneycontrol loads open and upcoming IPOs from a private API) |
+| Never call a site's private API or imitate a browser | That is bypassing access controls, not reading a public page |

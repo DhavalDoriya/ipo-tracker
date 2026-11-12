@@ -64,5 +64,6 @@ Retail investors in India check several sites to find which IPOs are open, their
 Home, Mainboard, SME, Buybacks, Checklist hub, Checklist detail, Guides (2), About.
 
 ## Open questions
-- IPO card details (dates, price band, subscription) have no permitted automated source yet (see the decision log in ARCHITECTURE.md). Options: maintain `data/ipos.json` by hand, or get written permission from a data provider. The pipeline list is automated from SEBI filings.
+- The IPO card source (Groww's public page) does not give lot size, issue size or category-wise subscription, and its terms do not permit reuse (accepted risk, see ARCHITECTURE.md). A permitted or richer source is still wanted.
+- Buybacks have no automated source; the page shows sample data.
 - Final GitHub repo name (sets the URL base path).

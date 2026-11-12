@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-12T09:34:00+00:00",
+  "updated_at": "2026-11-12T10:15:38+00:00",
   "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
     {
@@ -49,6 +49,14 @@
       "exchange": null,
       "expected": "RHP filing, 15 Oct 2026",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/jio-platforms-limited-rhp_105274.html"
+    },
+    {
+      "id": "hindustan-coca-cola-holdings-limited",
+      "name": "Hindustan Coca-Cola Holdings Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 12 Nov 2026",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/hindustan-coca-cola-holdings-limited-drhp_105729.html"
     },
     {
       "id": "snva-traveltech-limited",
@@ -233,14 +241,6 @@
       "exchange": null,
       "expected": "DRHP filing, 5 Oct 2026",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/everbrands-india-limited-drhp_105022.html"
-    },
-    {
-      "id": "arete-22-limited",
-      "name": "Arete 22 Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "DRHP filing, 5 Oct 2026",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/arete-22-limited-drhp_105016.html"
     }
   ]
 }

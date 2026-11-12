@@ -100,6 +100,54 @@ class ParseTableTests(unittest.TestCase):
         self.assertEqual(validate.validate_ipos(doc), [])
 
 
+NEXT_SOURCE = {
+    "name": "Fixture next",
+    "url": "https://example.com/ipo",
+    "parser": "next_data",
+    "detail_url": "https://example.com/ipo/",
+    "max_age_days": 30,
+}
+
+
+class ParseNextDataTests(unittest.TestCase):
+    def setUp(self):
+        with open(os.path.join(HERE, "fixtures", "next_data.html"), encoding="utf-8") as f:
+            self.ipos = scrape.parse_next_data(f.read(), NEXT_SOURCE, "2026-11-12")
+        self.by_id = {i["id"]: i for i in self.ipos}
+
+    def test_keeps_dated_and_recent_only(self):
+        self.assertEqual(
+            sorted(self.by_id), ["closed-co", "dated-upcoming", "listed-sme", "open-co"]
+        )
+
+    def test_listed_entry(self):
+        ipo = self.by_id["listed-sme"]
+        self.assertEqual(ipo["type"], "sme")
+        self.assertEqual(ipo["status"], "listed")
+        self.assertEqual(ipo["listing_date"], "2026-11-11")  # epoch ms read in India time
+        self.assertEqual(ipo["offer_price"], {"min": 66, "max": 66})
+        self.assertEqual(ipo["list_price"], 52.8)
+        self.assertEqual(ipo["subscription"], "12.09x")
+        self.assertEqual(ipo["source_url"], "https://example.com/ipo/listed-sme-ipo")
+
+    def test_statuses_and_price_band(self):
+        self.assertEqual(self.by_id["open-co"]["status"], "open")
+        self.assertEqual(self.by_id["open-co"]["offer_price"], {"min": 100, "max": 105})
+        self.assertEqual(self.by_id["open-co"]["lot_size"], 140)
+        self.assertEqual(self.by_id["dated-upcoming"]["status"], "upcoming")
+        self.assertEqual(self.by_id["closed-co"]["status"], "closed")
+        self.assertIsNone(self.by_id["closed-co"]["list_price"])
+
+    def test_page_without_data_gives_nothing(self):
+        self.assertEqual(scrape.parse_next_data("<html></html>", NEXT_SOURCE, "2026-11-12"), [])
+
+    def test_output_passes_the_validator(self):
+        import validate
+
+        doc = {"updated_at": "2026-11-12T09:30:00+00:00", "source": "Fixture", "ipos": self.ipos}
+        self.assertEqual(validate.validate_ipos(doc), [])
+
+
 FILINGS = {
     "name": "Fixture filings",
     "url": "https://example.gov/filings",

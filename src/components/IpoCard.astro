@@ -28,7 +28,9 @@ const gmp =
     <header>
       <div>
         <h3>{ipo.name}</h3>
-        <p class="muted meta">{ipo.type === 'sme' ? 'SME' : 'Mainboard'} · {ipo.exchange}</p>
+        <p class="muted meta">
+          {[ipo.type === 'sme' ? 'SME' : 'Mainboard', ipo.exchange].filter(Boolean).join(' · ')}
+        </p>
       </div>
       <StatusChip status={ipo.status} />
     </header>
@@ -36,8 +38,8 @@ const gmp =
     <dl>
       <div><dt>Open – close</dt><dd>{formatDateRange(ipo.open_date, ipo.close_date)}</dd></div>
       <div><dt>Price band</dt><dd>{formatPriceBand(ipo.offer_price)}</dd></div>
-      <div><dt>Lot size</dt><dd>{ipo.lot_size == null ? DASH : `${formatNumber(ipo.lot_size)} shares`}</dd></div>
-      <div><dt>Issue size</dt><dd>{orDash(ipo.issue_size)}</dd></div>
+      {ipo.lot_size != null && <div><dt>Lot size</dt><dd>{formatNumber(ipo.lot_size)} shares</dd></div>}
+      {ipo.issue_size && <div><dt>Issue size</dt><dd>{ipo.issue_size}</dd></div>}
       <div><dt>Subscription</dt><dd>{orDash(ipo.subscription)}</dd></div>
       <div><dt>Listing</dt><dd>{formatDate(ipo.listing_date)}</dd></div>
       {ipo.list_price != null && <div><dt>List price</dt><dd>{formatInr(ipo.list_price)}</dd></div>}

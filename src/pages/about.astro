@@ -29,7 +29,7 @@ const pipelineSource = loadComingSoon().source;
 
     <h2>Sources</h2>
     <ul>
-      <li>IPO cards (dates, price, subscription): {source}.</li>
+      <li>IPO cards (dates, price, subscription): {source}, collected automatically from its public page.</li>
       {pipelineSource && <li>Pipeline list on the home page: {pipelineSource} (sebi.gov.in), collected automatically.</li>}
       <li>Last updated: <time datetime={updated_at}>{formatUpdated(updated_at)}</time>.</li>
       <li>GMP, where shown, is entered by hand from unofficial market talk.</li>
@@ -38,8 +38,7 @@ const pipelineSource = loadComingSoon().source;
     {
       sample && (
         <p>
-          The IPO cards currently show sample data. No free source was found that both carries those
-          details and permits automated collection, so they are maintained by hand.
+          The IPO cards currently show sample data.
         </p>
       )
     }

@@ -19,6 +19,8 @@ OUT = os.path.join(DATA_DIR, "ipos.json")
 COMING_SOON_OUT = os.path.join(DATA_DIR, "coming_soon.json")
 SOURCES_FILE = os.path.join(ROOT, "scripts", "sources.json")
 
+IST = timezone(timedelta(hours=5, minutes=30))
+
 # Splits a filing title at the dash before the document type: "Acme Ltd - DRHP ...".
 FILING_SPLIT_RE = re.compile(
     r"\s*[-–—:]\s*(?=(?:U?DRHP|RHP|Addendum|Corrigendum|Draft|Prospectus|Abridged|Notice|Public)\b)",
@@ -177,6 +179,82 @@ def fetch(url, retries=3):
     return None
 
 
+def _ms_to_date(ms):
+    """Epoch milliseconds -> ISO date in India time; None when missing."""
+    if not isinstance(ms, (int, float)):
+        return None
+    return datetime.fromtimestamp(ms / 1000, tz=IST).date().isoformat()
+
+
+def _first(item, *keys):
+    for key in keys:
+        if item.get(key) is not None:
+            return item[key]
+    return None
+
+
+def parse_next_data(html, source, today):
+    """Parse IPO lists embedded in a page's __NEXT_DATA__ JSON (open, upcoming, closed).
+
+    Undated upcoming issues are skipped (coming_soon.json covers the pipeline) and closed
+    issues older than `max_age_days` are dropped.
+    """
+    from bs4 import BeautifulSoup
+
+    script = BeautifulSoup(html, "html.parser").find("script", id="__NEXT_DATA__")
+    if script is None or not script.string:
+        return []
+    try:
+        props = json.loads(script.string)["props"]["pageProps"]
+    except (ValueError, KeyError, TypeError):
+        return []
+
+    cutoff = (date.fromisoformat(today) - timedelta(days=source.get("max_age_days", 30))).isoformat()
+    ipos = []
+    for list_key in ("openDataList", "upcomingDataList", "closedDataList"):
+        for item in props.get(list_key) or []:
+            name = (item.get("companyName") or "").strip()
+            if not name:
+                continue
+            open_date = _first(item, "openingDate") or _ms_to_date(item.get("bidStartTimestamp"))
+            close_date = _first(item, "closingDate") or _ms_to_date(item.get("bidEndTimestamp"))
+            listing_date = _first(item, "listingDate") or _ms_to_date(item.get("listingTimestamp"))
+            if list_key == "upcomingDataList" and not open_date:
+                continue
+            if list_key == "closedDataList" and (not close_date or close_date < cutoff):
+                continue
+            low = _first(item, "minPrice", "issuePrice")
+            high = _first(item, "maxPrice", "issuePrice")
+            subscription = item.get("overallSubscription")
+            search_id = item.get("searchId")
+            ipos.append(
+                {
+                    "id": slugify(name),
+                    "name": name,
+                    "type": "sme" if item.get("isSme") else "mainboard",
+                    "exchange": None,
+                    "status": derive_status(open_date, close_date, listing_date, today),
+                    "open_date": open_date,
+                    "close_date": close_date,
+                    "listing_date": listing_date,
+                    "offer_price": {"min": min(low, high), "max": max(low, high)}
+                    if isinstance(low, (int, float)) and isinstance(high, (int, float))
+                    else None,
+                    "list_price": item.get("listingPrice") if item.get("isListed") else None,
+                    "lot_size": _first(item, "lotSize"),
+                    "issue_size": None,
+                    "subscription": f"{subscription:.2f}x" if isinstance(subscription, (int, float)) else None,
+                    "subscription_breakup": None,
+                    "gmp": None,
+                    "source_url": f"{source['detail_url']}{search_id}" if search_id else source["url"],
+                }
+            )
+    return ipos
+
+
+PARSERS = {"table": parse_table, "next_data": parse_next_data}
+
+
 def clean_filing_title(title):
     """'ACME LIMITED- RHP ACME LIMITED - Abridged...' -> 'Acme Limited'; None when no name is left."""
     name = FILING_SPLIT_RE.split(title or "", maxsplit=1)[0].strip(" -–—:")
@@ -232,8 +310,8 @@ def load_config():
     return config.get("sources", []), config.get("filings", [])
 
 
-def scrape(sources, today, parse=parse_table):
-    """Run every source through `parse`; a failing source is skipped, not fatal."""
+def scrape(sources, today, parse=None):
+    """Run every source through its parser; a failing source is skipped, not fatal."""
     items, seen = [], set()
     for source in sources:
         if not source["url"].startswith("https://"):
@@ -245,7 +323,7 @@ def scrape(sources, today, parse=parse_table):
         html = fetch(source["url"])
         if html is None:
             continue
-        found = parse(html, source, today)
+        found = (parse or PARSERS[source.get("parser", "table")])(html, source, today)
         print(f"[info] {source['name']}: {len(found)} entries")
         for item in found:
             if item["id"] not in seen:

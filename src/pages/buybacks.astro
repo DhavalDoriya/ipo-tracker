@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BuybackCard from '../components/BuybackCard.astro';
+import Notice from '../components/Notice.astro';
 import { loadBuybacks } from '../lib/data';
 import { formatUpdated } from '../lib/format';
 
-const { buybacks, updated_at } = loadBuybacks();
+const { buybacks, updated_at, sample } = loadBuybacks();
 const order = { open: 0, upcoming: 1, closed: 2 };
 const sorted = [...buybacks].sort((a, b) => order[a.status] - order[b.status]);
 ---
@@ -21,6 +22,15 @@ const sorted = [...buybacks].sort((a, b) => order[a.status] - order[b.status]);
     </p>
   </div>
   {
+    sample && (
+      <div class="sample">
+        <Notice>
+          <strong>Sample data.</strong> These buybacks are placeholders, not real offers.
+        </Notice>
+      </div>
+    )
+  }
+  {
     sorted.length === 0 ? (
       <p class="muted">No buybacks announced right now.</p>
     ) : (
@@ -32,3 +42,9 @@ const sorted = [...buybacks].sort((a, b) => order[a.status] - order[b.status]);
     )
   }
 </BaseLayout>
+
+<style>
+  .sample {
+    margin-bottom: var(--space-4);
+  }
+</style>

@@ -13,7 +13,7 @@ There is no database. The data store is JSON files in `data/`, versioned by git.
 | --- | --- | --- |
 | `ipos.json` | scraper | Current and recent IPOs, mainboard + SME |
 | `coming_soon.json` | scraper (SEBI filings) | IPOs in the pipeline: offer document filed, no dates yet |
-| `buybacks.json` | scraper / hand | Buyback calendar |
+| `buybacks.json` | hand | Buyback calendar; `sample: true` shows a placeholder banner |
 | `gmp.json` | hand | Unofficial grey market premium, joined to IPOs by `id` |
 | `checklists/<slug>.json` | hand | One analysis checklist per IPO |
 | `history/<date>.json` | scraper | Daily copy of `ipos.json` |
@@ -26,7 +26,7 @@ Top level: `updated_at`, `source`, optional `sample` (true while data is placeho
 | `id` | string | required |
 | `name` | string | required |
 | `type` | `"mainboard"` \| `"sme"` | required |
-| `exchange` | string | e.g. `"NSE, BSE"`, `"BSE SME"` |
+| `exchange` | string \| null | e.g. `"NSE, BSE"`, `"BSE SME"`; null when the source does not say |
 | `status` | `"upcoming"` \| `"open"` \| `"closed"` \| `"listed"` | required |
 | `open_date`, `close_date`, `listing_date` | date \| null | |
 | `offer_price` | `{ min, max }` \| null | rupees |

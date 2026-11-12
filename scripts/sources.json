@@ -1,5 +1,13 @@
 {
-  "sources": [],
+  "sources": [
+    {
+      "name": "Groww IPO page",
+      "url": "https://groww.in/ipo",
+      "parser": "next_data",
+      "detail_url": "https://groww.in/ipo/",
+      "max_age_days": 30
+    }
+  ],
   "filings": [
     {
       "name": "SEBI public issue filings (RHP)",

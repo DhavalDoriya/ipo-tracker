@@ -4,7 +4,7 @@ A free, static IPO information portal for the Indian market: mainboard and SME I
 
 > For information only. Not financial advice. Verify everything with NSE, BSE and the registrar.
 
-The IPO cards currently show **sample data** (placeholder companies); the pipeline list on the home page is real, from SEBI filings. See [Data sources](#data-sources).
+IPO cards and the pipeline list show real data. The buyback page still shows **sample data**. See [Data sources](#data-sources).
 
 ## Local development
 
@@ -55,17 +55,19 @@ Editing a file in `data/` by hand and pushing to `main` deploys the same way.
 `scripts/sources.json` has two lists:
 
 - `filings`: regulator filing lists that feed `data/coming_soon.json` (the pipeline list on the home page). Configured with SEBI's public issue filings, RHP and DRHP stage. SEBI's `robots.txt` allows access and the pages are plain HTML.
-- `sources`: HTML tables that feed `data/ipos.json` (the IPO cards). **Empty.** Every candidate checked was ruled out: NSE, BSE, Chittorgarh, InvestorGain and Zerodha need cookies or a browser-like User-Agent, or refuse the scraper's `robots.txt` request; Moneycontrol, Groww and Upstox prohibit scrapers or reuse in their terms. Until you have permission from a provider, edit `data/ipos.json` by hand (remove `"sample": true` when the data is real).
+- `sources`: pages that feed `data/ipos.json` (the IPO cards). Configured with Groww's public IPO page, read from the data embedded in its HTML (`"parser": "next_data"`). It gives name, type, dates, issue price, listing price and overall subscription; it does not give lot size, issue size or category-wise subscription. Closed issues older than 30 days are dropped.
 
-To add an IPO table source:
+**Terms risk:** Groww's `robots.txt` allows this page, but its terms of use prohibit copying content without consent. Using it is the owner's accepted risk. If Groww objects, remove the entry from `scripts/sources.json`.
+
+Not used: NSE, BSE, Chittorgarh, InvestorGain and Zerodha need cookies or a browser-like User-Agent, or refuse the scraper's `robots.txt` request. Moneycontrol and Upstox carry less in plain HTML.
+
+To add an HTML table source (`"parser": "table"`, the default):
 
 1. Confirm the site's `robots.txt` and terms of use allow automated access. Sites that need cookies, a browser-like User-Agent or a CAPTCHA to respond do not qualify.
 2. Copy an entry from `scripts/sources.example.json` into `scripts/sources.json` and set the URL, table selector, date format and column headings.
 3. Run `python3 scripts/scrape.py` then `python3 scripts/validate.py` locally.
 
-The first successful run replaces the sample data and removes the sample banner.
-
-Hand-maintained files: `data/gmp.json`, `data/ipos.json` (for now), `data/buybacks.json`, `data/checklists/*.json`. To add a checklist, copy `data/checklists/ipo-analysis-template.json` to `<slug>.json`, set `company` and `ipo_id`, and fill in each `analysis`.
+Hand-maintained files: `data/gmp.json`, `data/buybacks.json` (remove `"sample": true` once real), `data/checklists/*.json`. To add a checklist, copy `data/checklists/ipo-analysis-template.json` to `<slug>.json`, set `company` and `ipo_id`, and fill in each `analysis`.
 
 Field reference: [docs/DATABASE.md](docs/DATABASE.md).
 
