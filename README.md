@@ -42,7 +42,7 @@ The scraper tests need `pip install -r scripts/requirements.txt` (use a virtuale
 
 ## How updates work
 
-1. `update-data.yml` runs every 30 minutes (and on demand).
+1. `update-data.yml` runs daily at 09:00 IST (03:30 UTC) and on demand.
 2. `scripts/scrape.py` reads the sources in `scripts/sources.json`, checks each site's `robots.txt`, fetches at most one page per second, and builds the IPO list.
 3. If the content is unchanged it writes nothing. Otherwise it writes `data/ipos.json` and a daily copy in `data/history/`.
 4. `scripts/validate.py` checks every data file. Any error stops the run with nothing committed.
@@ -80,7 +80,7 @@ Field reference: [docs/DATABASE.md](docs/DATABASE.md).
 ## Known limitations
 
 - **GMP is not automated.** There is no reliable free public feed; enter it in `data/gmp.json` or leave it out.
-- **Subscription data is a snapshot**, refreshed every 30 to 60 minutes at best. GitHub can delay scheduled runs.
+- **Subscription data is a snapshot**, refreshed once a day (09:00 IST) unless you run the workflow manually. GitHub can delay scheduled runs.
 - **Scrapers are fragile.** When a source changes its HTML the job fails and the last good data stays up. Watch the Actions tab.
 - **No allotment lookup, broker integration or accounts.** These need a server and partner access.
 - GitHub pauses scheduled workflows after 60 days without repository activity.

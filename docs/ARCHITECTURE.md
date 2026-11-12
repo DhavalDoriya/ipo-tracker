@@ -53,7 +53,7 @@ GitHub Actions cron ──> scripts/scrape.py ──> data/*.json ──> valida
 | Repo and base path are `ipo-update`, not the brief's `ipo-portal` | Matches the project folder |
 | Node 24 in CI | Astro 7 requires Node >= 22.23 |
 | `update-data.yml` calls `deploy.yml` via `workflow_call` | Pushes made with `GITHUB_TOKEN` do not trigger other workflows |
-| Scraper writes nothing when content is unchanged | Avoids a commit and deploy every 30 minutes |
+| Scraper writes nothing when content is unchanged | Avoids a commit and deploy every day |
 | Build-time data only | Keeps pages static and fast; freshness comes from redeploys |
 | No UI framework, no Tailwind | Nothing here needs them; fewer moving parts |
 | `ipos.json` comes from Groww's public IPO page (data embedded in the page HTML) | Owner's decision (12 Nov 2026): the data is publicly viewable. robots.txt allows the page and it answers a plain request. Groww's terms prohibit copying without consent, so this is an accepted risk: if Groww objects, remove the source |

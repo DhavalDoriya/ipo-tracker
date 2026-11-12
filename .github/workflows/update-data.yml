@@ -2,7 +2,7 @@ name: Update IPO Data
 
 on:
   schedule:
-    - cron: '*/30 * * * *' # every 30 min (UTC); GitHub may delay runs
+    - cron: '30 3 * * *' # daily at 09:00 IST (03:30 UTC); GitHub may delay runs
   workflow_dispatch:
 
 concurrency:
