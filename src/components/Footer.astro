@@ -4,30 +4,118 @@ import { formatUpdated } from '../lib/format';
 import { url } from '../lib/url';
 
 const { updated_at, source } = loadIposFile();
+
+const groups = [
+  {
+    title: 'Browse',
+    links: [
+      { href: '/mainboard/', label: 'Mainboard IPOs' },
+      { href: '/sme/', label: 'SME IPOs' },
+      { href: '/buybacks/', label: 'Buybacks' },
+    ],
+  },
+  {
+    title: 'Learn',
+    links: [
+      { href: '/checklist/', label: 'Analysis checklist' },
+      { href: '/guides/how-to-apply/', label: 'How to apply' },
+      { href: '/guides/kpi-explained/', label: 'IPO terms explained' },
+    ],
+  },
+  {
+    title: 'Site',
+    links: [{ href: '/about/', label: 'About and sources' }],
+  },
+];
 ---
 
 <footer class="footer">
-  <div class="container stack">
-    <p>
-      <strong>Disclaimer:</strong> This site is for informational purposes only and does not constitute
-      financial advice. IPO investments carry risk. Verify all data with NSE/BSE/registrar before applying.
-      GMP is unofficial and volatile.
-    </p>
-    <p class="muted">
-      Data last updated <time datetime={updated_at}>{formatUpdated(updated_at)}</time>. Source: {source}.
-      <a href={url('/about/')}>About and sources</a>
-    </p>
+  <div class="container">
+    <div class="cols">
+      {
+        groups.map((g) => (
+          <nav aria-label={g.title}>
+            <h2>{g.title}</h2>
+            <ul>
+              {g.links.map((l) => (
+                <li>
+                  <a href={url(l.href)}>{l.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
+    <div class="legal">
+      <p>
+        <strong>Disclaimer:</strong> This site is for informational purposes only and does not constitute
+        financial advice. IPO investments carry risk. Verify all data with NSE/BSE/registrar before applying.
+        GMP is unofficial and volatile.
+      </p>
+      <p class="muted">
+        Data last updated <time datetime={updated_at}>{formatUpdated(updated_at)}</time>. Source: {source}.
+      </p>
+    </div>
   </div>
 </footer>
 
 <style>
   .footer {
     background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
     padding-block: var(--space-6) var(--space-section);
+  }
+
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+
+  h2 {
+    font: var(--text-body);
+    font-weight: 600;
+  }
+
+  ul {
+    margin-top: var(--space-1);
+    padding: 0;
+    list-style: none;
+  }
+
+  li a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  li a:hover {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  .legal {
+    margin-top: var(--space-5);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
     font: var(--text-small);
   }
 
-  p {
+  .legal p {
     max-width: 90ch;
+  }
+
+  .legal p + p {
+    margin-top: var(--space-2);
+  }
+
+  @media (min-width: 569px) {
+    .cols {
+      grid-template-columns: repeat(3, minmax(0, 220px));
+      gap: var(--space-6);
+    }
   }
 </style>

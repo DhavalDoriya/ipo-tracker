@@ -1,6 +1,6 @@
 /* Design tokens and base rules. See docs/DESIGN_SYSTEM.md. */
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
 
   --color-bg: #ffffff;
   --color-surface: #f8f9fa;
@@ -18,6 +18,23 @@
   --color-warning-bg: #fef7e0;
   --color-danger: #b3261e;
   --color-danger-bg: #fce8e6;
+  --color-surface-tint: #e8f0fe;
+  --color-info: #0b57d0;
+  --color-info-bg: #d3e3fd;
+
+  /* Avatar tones: six fixed pairs, picked per company name. */
+  --tone-1-bg: #d3e3fd;
+  --tone-1-fg: #0b3d91;
+  --tone-2-bg: #fce8e6;
+  --tone-2-fg: #a50e0e;
+  --tone-3-bg: #feefc3;
+  --tone-3-fg: #7a4f01;
+  --tone-4-bg: #ceead6;
+  --tone-4-fg: #0d652d;
+  --tone-5-bg: #e9d2fd;
+  --tone-5-fg: #5b1c9e;
+  --tone-6-bg: #cbf0f8;
+  --tone-6-fg: #00474f;
 
   --font-sans: var(--font-roboto, Roboto), Arial, sans-serif;
   --text-display: 500 2rem/1.25 var(--font-sans);
@@ -49,26 +66,45 @@
   --touch: 44px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #131314;
-    --color-surface: #1e1f20;
-    --color-border: #444746;
-    --color-text: #e3e3e3;
-    --color-text-muted: #c4c7c5;
-    --color-primary: #a8c7fa;
-    --color-on-primary: #062e6f;
-    --color-primary-container: #0842a0;
-    --color-on-primary-container: #d3e3fd;
-    --color-link: #a8c7fa;
-    --color-success: #6dd58c;
-    --color-success-bg: #0f5223;
-    --color-warning: #fdd663;
-    --color-warning-bg: #5b4300;
-    --color-danger: #f2b8b5;
-    --color-danger-bg: #601410;
-    --shadow-card: rgba(0, 0, 0, 0.5) 0 2px 6px 0;
-  }
+/* Dark theme. BaseLayout sets data-theme before first paint from the saved choice,
+   falling back to the system setting. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-bg: #131314;
+  --color-surface: #1e1f20;
+  --color-border: #444746;
+  --color-text: #e3e3e3;
+  --color-text-muted: #c4c7c5;
+  --color-primary: #a8c7fa;
+  --color-on-primary: #062e6f;
+  --color-primary-container: #0842a0;
+  --color-on-primary-container: #d3e3fd;
+  --color-link: #a8c7fa;
+  --color-success: #6dd58c;
+  --color-success-bg: #0f5223;
+  --color-warning: #fdd663;
+  --color-warning-bg: #5b4300;
+  --color-danger: #f2b8b5;
+  --color-danger-bg: #601410;
+  --shadow-card: rgba(0, 0, 0, 0.5) 0 2px 6px 0;
+  
+  --color-surface-tint: #1a2639;
+  --color-info: #a8c7fa;
+  --color-info-bg: #0842a0;
+
+  --tone-1-bg: #0842a0;
+  --tone-1-fg: #d3e3fd;
+  --tone-2-bg: #8c1d18;
+  --tone-2-fg: #fad2cf;
+  --tone-3-bg: #5b4300;
+  --tone-3-fg: #feefc3;
+  --tone-4-bg: #0f5223;
+  --tone-4-fg: #ceead6;
+  --tone-5-bg: #5b1c9e;
+  --tone-5-fg: #e9d2fd;
+  --tone-6-bg: #004f58;
+  --tone-6-fg: #cbf0f8;
 }
 
 @media (min-width: 569px) {
@@ -92,6 +128,9 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font: var(--text-body);
+  transition:
+    background-color var(--dur-base) var(--ease),
+    color var(--dur-base) var(--ease);
 }
 
 h1,
@@ -184,10 +223,16 @@ a {
   background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: var(--space-5);
+  padding: var(--space-4);
   transition:
     box-shadow var(--dur-base) var(--ease),
     border-color var(--dur-base) var(--ease);
+}
+
+@media (min-width: 569px) {
+  .card {
+    padding: var(--space-5);
+  }
 }
 
 .card:hover {
@@ -257,7 +302,7 @@ a {
   justify-content: space-between;
   gap: var(--space-1) var(--space-4);
   min-height: 56px;
-  padding: var(--space-3) var(--space-5);
+  padding: var(--space-3) var(--space-4);
   border-bottom: 1px solid var(--color-border);
   transition: background-color var(--dur-base) var(--ease);
 }

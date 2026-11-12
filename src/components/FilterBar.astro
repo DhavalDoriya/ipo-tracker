@@ -3,7 +3,13 @@
 // [data-filter-scope], group by group ([data-filter-group], see IpoList). A group with
 // data-limit shows only its first N items until "Show all" is pressed or a filter is active.
 // Enhancement only: without JavaScript every item is visible (see BaseLayout noscript).
-const statuses = [
+interface Props {
+  /** Number of items per status, shown on the chips. */
+  counts?: Partial<Record<'open' | 'upcoming' | 'closed' | 'listed', number>>;
+}
+
+const { counts } = Astro.props;
+const statuses: { value: '' | 'open' | 'upcoming' | 'closed' | 'listed'; label: string }[] = [
   { value: '', label: 'All' },
   { value: 'open', label: 'Open' },
   { value: 'upcoming', label: 'Upcoming' },
@@ -29,7 +35,11 @@ const statuses = [
       statuses.map((s) => (
         <label class="chip">
           <input type="radio" name="status" value={s.value} checked={s.value === ''} />
-          <span>{s.label}</span>
+          <span class="pill">
+            {s.value && <i class:list={['dot', s.value]} />}
+            {s.label}
+            {s.value && counts?.[s.value] != null && <b>{counts[s.value]}</b>}
+          </span>
         </label>
       ))
     }
@@ -156,9 +166,10 @@ const statuses = [
     cursor: pointer;
   }
 
-  .chip span {
+  .pill {
     display: inline-flex;
     align-items: center;
+    gap: var(--space-2);
     min-height: 36px;
     padding-inline: var(--space-4);
     border: 1px solid var(--color-border);
@@ -169,19 +180,44 @@ const statuses = [
     transition: background-color var(--dur-base) var(--ease);
   }
 
-  .chip:hover span {
+  .chip:hover .pill {
     background: var(--color-surface);
     color: var(--color-text);
   }
 
-  .chip input:checked + span {
+  .chip input:checked + .pill {
     border-color: transparent;
     background: var(--color-primary-container);
     color: var(--color-on-primary-container);
   }
 
-  .chip input:focus-visible + span {
+  .chip input:focus-visible + .pill {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-pill);
+    background: var(--color-text-muted);
+  }
+
+  .dot.open {
+    background: var(--color-success);
+  }
+
+  .dot.upcoming {
+    background: var(--color-warning);
+  }
+
+  .dot.listed {
+    background: var(--color-info);
+  }
+
+  b {
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+    opacity: 0.8;
   }
 </style>

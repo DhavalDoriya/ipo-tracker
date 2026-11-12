@@ -1,0 +1,31 @@
+---
+// Round initial for a company. The tone is picked from the name, so a company keeps its colour.
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+const initial = (name.match(/[a-z0-9]/i)?.[0] ?? '?').toUpperCase();
+let hash = 0;
+for (const ch of name) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
+const tone = (hash % 6) + 1;
+---
+
+<span class="avatar" style={`--bg: var(--tone-${tone}-bg); --fg: var(--tone-${tone}-fg)`} aria-hidden="true">
+  {initial}
+</span>
+
+<style>
+  .avatar {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-pill);
+    background: var(--bg);
+    color: var(--fg);
+    font: 500 1.125rem/1 var(--font-sans);
+  }
+</style>

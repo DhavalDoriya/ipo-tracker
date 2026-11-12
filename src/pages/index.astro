@@ -15,6 +15,13 @@ const upcoming = ipos.filter((i) => i.status === 'upcoming');
 const recent = ipos.filter((i) => i.status === 'closed' || i.status === 'listed');
 const comingSoon = loadComingSoon();
 const pipeline = comingSoon.ipos;
+// Pipeline rows filter as "upcoming", so the chip count includes them.
+const counts = {
+  open: open.length,
+  upcoming: upcoming.length + pipeline.length,
+  closed: ipos.filter((i) => i.status === 'closed').length,
+  listed: ipos.filter((i) => i.status === 'listed').length,
+};
 ---
 
 <BaseLayout
@@ -25,11 +32,10 @@ const pipeline = comingSoon.ipos;
     <section class="hero">
       <h1>Today's IPOs</h1>
       <p class="muted">
-        {open.length} open, {upcoming.length} upcoming and {recent.length} closed or listed in the last 30
-        days, across mainboard and SME. Updated{' '}
+        Mainboard and SME issues in India, with {pipeline.length} more in the pipeline. Updated{' '}
         <time datetime={updated_at}>{formatUpdated(updated_at)}</time>.
       </p>
-      <FilterBar />
+      <FilterBar counts={counts} />
     </section>
 
     <section class="section" aria-labelledby="open">
@@ -108,7 +114,7 @@ const pipeline = comingSoon.ipos;
     margin-top: var(--space-2);
     padding: var(--space-6) var(--space-5);
     border-radius: var(--radius-md);
-    background: var(--color-surface);
+    background: var(--color-surface-tint);
   }
 
   .hero p {

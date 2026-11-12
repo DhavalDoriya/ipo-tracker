@@ -23,6 +23,13 @@ Based on the "Google Material 3" design.md kit. Tokens live in `src/styles/globa
 | `--color-success` / `-bg` | `#146c2e` / `#e6f4ea` | `#6dd58c` / `#0f5223` | Open, positive |
 | `--color-warning` / `-bg` | `#8a5a00` / `#fef7e0` | `#fdd663` / `#5b4300` | Upcoming, caution |
 | `--color-danger` / `-bg` | `#b3261e` / `#fce8e6` | `#f2b8b5` / `#601410` | Negative, errors |
+| `--color-info` / `-bg` | `#0b57d0` / `#d3e3fd` | `#a8c7fa` / `#0842a0` | Listed status |
+| `--color-surface-tint` | `#e8f0fe` | `#1a2639` | Home hero panel |
+| `--tone-1..6-bg` / `-fg` | blue, red, yellow, green, purple, teal (100 / 900 shades) | same hues, dark container / light text | Company avatars only |
+
+**Theme:** light and dark, chosen with the header toggle and saved in `localStorage` (`theme`). With no saved choice the system setting is used. `BaseLayout` sets `data-theme` on `<html>` before first paint; dark tokens live under `:root[data-theme='dark']`. Without JavaScript the site is light.
+
+**Colour use:** colour always carries meaning. Status = green (open), amber (upcoming), blue (listed), grey (closed), on chips and filter dots. Gain = green / red. Avatar tones identify a company and mean nothing else. Never colour text or backgrounds for decoration.
 
 The kit's border (`#f8f9fa`) is invisible on white, so a visible `#e1e3e1` is used. Semantic colours are added because the kit has none.
 
@@ -46,13 +53,16 @@ Roboto (self-hosted), fallback `Arial, sans-serif`.
 ## Components and states
 Shared classes live in `global.css`: `.card`, `.btn`, `.btn-tonal`, `.rows`, `.actions`, `.grid`.
 
-- **Header**: sticky, logo mark + name, pill nav. Hover: surface. Active page: primary-container + `aria-current`. Focus: 2px primary outline.
+- **Header**: logo mark + name, theme toggle, pill nav; sticky from 900px, and on smaller screens the nav is a scrolling row under the brand. Hover: surface. Active page: primary-container + `aria-current`. Focus: 2px primary outline.
 - **Hero** (home only): surface panel, `--radius-md`, holding the page title, a one-line summary and the search. The search box is the one prominent element on the page.
-- **Search + status chips** (`FilterBar`): pill search box, 52px, white on the panel; hover and focus lift it with `--shadow-card`. Chips are radio buttons: unselected = outlined, selected = primary-container. No result in a group shows "No IPOs here match your search."
+- **Search + status chips** (`FilterBar`): pill search box, 52px, white on the panel; hover and focus lift it with `--shadow-card`. Chips are radio buttons with a status-coloured dot and a count: unselected = outlined, selected = primary-container. No result in a group shows "No IPOs here match your search."
 - **Card** (`.card`; `IpoCard`, `BuybackCard`): outlined, `--radius-md`. Hover: shadow replaces the border. Rows without data are left out rather than shown as a dash.
 - **Issue timeline** (in `IpoCard`): Opens, Closes, Lists. A dot and its connecting line fill with primary once that step has happened.
 - **Listing gain**: small pill after the listing price; success colours when up, danger when down, neutral at zero.
-- **Status chip**: pill, 12px; open = success, upcoming = warning, closed / listed = neutral outline.
+- **Status chip**: pill, 12px; open = success, upcoming = warning, listed = info, closed = neutral outline.
+- **Avatar**: 40px circle with the company's initial; tone picked from the name so it is stable.
+- **Theme toggle**: 44px icon button; shows a moon in light, a sun in dark; `aria-label` names the theme it switches to.
+- **Footer**: link groups (Browse, Learn, Site) above the disclaimer and last-updated line.
 - **Button** (`.btn`): filled primary pill, min height 44px; `.btn-tonal` uses primary-container. Hover: shadow. One filled button per view at most.
 - **Rows** (`.rows`): bordered list for the pipeline, checklist hub and guides. Hover: surface.
 - **Show all**: long lists show the first few items with a tonal "Show all N" button; searching or filtering always looks through everything.
@@ -62,7 +72,7 @@ Shared classes live in `global.css`: `.card`, `.btn`, `.btn-tonal`, `.rows`, `.a
 - Loading and error states do not exist: pages are built ahead of time. A failed build never deploys.
 
 ## Breakpoints
-Mobile first; one breakpoint at `569px` (cards go from 1 column to an auto-fill grid, nav from scroll row to inline).
+Mobile first. `569px`: cards go from 1 column to an auto-fill grid, panels get more padding, footer goes from 2 to 3 columns. `900px`: header becomes a single sticky row.
 
 ## Accessibility
 - Text contrast >= 4.5:1 in both themes; touch targets >= 44px.

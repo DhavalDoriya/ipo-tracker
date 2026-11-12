@@ -1,0 +1,72 @@
+---
+// Light / dark switch. The initial theme is set in BaseLayout before first paint.
+---
+
+<button class="toggle" type="button" data-theme-toggle aria-label="Switch theme">
+  <svg class="moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+    <path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36A5.4 5.4 0 0 1 12.36 3.1 9 9 0 0 0 12 3"
+    ></path>
+  </svg>
+  <svg class="sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+    <path
+      fill="currentColor"
+      d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10M2 13h2a1 1 0 0 0 0-2H2a1 1 0 0 0 0 2m18 0h2a1 1 0 0 0 0-2h-2a1 1 0 0 0 0 2M11 2v2a1 1 0 0 0 2 0V2a1 1 0 0 0-2 0m0 18v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-2 0M5.99 4.58a1 1 0 0 0-1.41 1.41l1.06 1.06a1 1 0 0 0 1.41-1.41zm12.37 12.37a1 1 0 0 0-1.41 1.41l1.06 1.06a1 1 0 0 0 1.41-1.41zm1.06-10.96a1 1 0 0 0-1.41-1.41l-1.06 1.06a1 1 0 0 0 1.41 1.41zM7.05 18.36a1 1 0 0 0-1.41-1.41l-1.06 1.06a1 1 0 0 0 1.41 1.41z"
+    ></path>
+  </svg>
+</button>
+
+<script>
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]');
+  const label = () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    buttons.forEach((b) => b.setAttribute('aria-label', `Switch to ${next} theme`));
+  };
+
+  label();
+  buttons.forEach((button) =>
+    button.addEventListener('click', () => {
+      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      try {
+        localStorage.setItem('theme', root.dataset.theme);
+      } catch {
+        // private mode: the choice lasts for this page only
+      }
+      label();
+    }),
+  );
+</script>
+
+<style>
+  .toggle {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--touch);
+    height: var(--touch);
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: background-color var(--dur-base) var(--ease);
+  }
+
+  .toggle:hover {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .sun {
+    display: none;
+  }
+
+  :global([data-theme='dark']) .sun {
+    display: block;
+  }
+
+  :global([data-theme='dark']) .moon {
+    display: none;
+  }
+</style>

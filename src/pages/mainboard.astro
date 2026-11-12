@@ -5,6 +5,12 @@ import IpoList from '../components/IpoList.astro';
 import { loadIpos } from '../lib/data';
 
 const ipos = loadIpos().filter((i) => i.type === 'mainboard');
+const counts = {
+  open: ipos.filter((i) => i.status === 'open').length,
+  upcoming: ipos.filter((i) => i.status === 'upcoming').length,
+  closed: ipos.filter((i) => i.status === 'closed').length,
+  listed: ipos.filter((i) => i.status === 'listed').length,
+};
 ---
 
 <BaseLayout
@@ -17,7 +23,7 @@ const ipos = loadIpos().filter((i) => i.type === 'mainboard');
   </div>
   <div data-filter-scope>
     <div class="filter">
-      <FilterBar />
+      <FilterBar counts={counts} />
     </div>
     <IpoList ipos={ipos} emptyText="No mainboard IPOs to show right now." />
   </div>

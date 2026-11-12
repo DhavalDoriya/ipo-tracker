@@ -1,4 +1,5 @@
 ---
+import Avatar from './Avatar.astro';
 import StatusChip from './StatusChip.astro';
 import type { IpoWithGmp } from '../lib/data';
 import { formatDayMonth, formatInr, formatNumber, formatPriceBand, listingGain } from '../lib/format';
@@ -28,7 +29,8 @@ const sourceHost = ipo.source_url ? new URL(ipo.source_url).hostname.replace(/^w
 <li class="card" data-ipo-card data-name={ipo.name.toLowerCase()} data-status={ipo.status} hidden={hidden}>
   <article>
     <header>
-      <div>
+      <Avatar name={ipo.name} />
+      <div class="title">
         <h3>{ipo.name}</h3>
         <p class="muted meta">
           {ipo.type === 'sme' ? 'SME' : 'Mainboard'}{ipo.exchange && `, ${ipo.exchange}`}
@@ -129,9 +131,17 @@ const sourceHost = ipo.source_url ? new URL(ipo.source_url).hostname.replace(/^w
 <style>
   header {
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
     gap: var(--space-3);
+  }
+
+  .title {
+    flex: 1;
+    min-width: 0;
+  }
+
+  h3 {
+    overflow-wrap: anywhere;
   }
 
   .meta {
