@@ -1,0 +1,22 @@
+{
+  "sources": [
+    {
+      "name": "Example Exchange SME",
+      "url": "https://example.com/ipo/sme",
+      "type": "sme",
+      "exchange": "BSE SME",
+      "table_selector": "table#ipo-list",
+      "date_format": "%d %b %Y",
+      "columns": {
+        "name": "Company",
+        "open_date": "Open",
+        "close_date": "Close",
+        "listing_date": "Listing",
+        "offer_price": "Price Band",
+        "lot_size": "Lot Size",
+        "issue_size": "Issue Size",
+        "subscription": "Subscription"
+      }
+    }
+  ]
+}

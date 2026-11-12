@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { url } from '../../lib/url';
+
+const guides = [
+  {
+    href: '/guides/how-to-apply/',
+    title: 'How to apply for an IPO',
+    summary: 'UPI and ASBA, step by step, and what happens after you apply.',
+  },
+  {
+    href: '/guides/kpi-explained/',
+    title: 'IPO terms and KPIs explained',
+    summary: 'Price band, lot size, subscription, OFS, P/E, RoNW and more in plain words.',
+  },
+];
+---
+
+<BaseLayout title="Guides" description="Plain-language guides to applying for and reading an IPO in India.">
+  <div class="page-head">
+    <h1>Guides</h1>
+    <p>Short, plain-language explainers.</p>
+  </div>
+  <ul class="list">
+    {
+      guides.map((g) => (
+        <li>
+          <a href={url(g.href)}>{g.title}</a>
+          <p class="muted">{g.summary}</p>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
+
+<style>
+  .list {
+    padding: 0;
+    list-style: none;
+    max-width: 70ch;
+  }
+
+  .list li {
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .list a {
+    font: var(--text-title);
+  }
+</style>

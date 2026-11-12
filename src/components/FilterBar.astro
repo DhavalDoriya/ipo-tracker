@@ -1,0 +1,90 @@
+---
+// Filters the [data-ipo-card] items inside the nearest [data-filter-scope]. Works as an
+// enhancement: without JavaScript the full list stays visible.
+---
+
+<form class="filters" data-filter-form role="search" aria-label="Filter IPOs">
+  <label>
+    <span>Search</span>
+    <input type="search" name="q" placeholder="Company name" autocomplete="off" />
+  </label>
+  <label>
+    <span>Status</span>
+    <select name="status">
+      <option value="">All</option>
+      <option value="open">Open</option>
+      <option value="upcoming">Upcoming</option>
+      <option value="closed">Closed</option>
+      <option value="listed">Listed</option>
+    </select>
+  </label>
+</form>
+<p class="muted empty" data-filter-empty hidden aria-live="polite">No IPOs match your filter.</p>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-filter-scope]').forEach((scope) => {
+    const form = scope.querySelector<HTMLFormElement>('[data-filter-form]');
+    const empty = scope.querySelector<HTMLElement>('[data-filter-empty]');
+    const cards = [...scope.querySelectorAll<HTMLElement>('[data-ipo-card]')];
+    if (!form || !empty) return;
+
+    const apply = () => {
+      const data = new FormData(form);
+      const q = String(data.get('q') ?? '').trim().toLowerCase();
+      const status = String(data.get('status') ?? '');
+      let shown = 0;
+      for (const card of cards) {
+        const match =
+          (card.dataset.name ?? '').includes(q) && (!status || card.dataset.status === status);
+        card.hidden = !match;
+        if (match) shown++;
+      }
+      empty.hidden = shown > 0;
+    };
+
+    form.addEventListener('input', apply);
+    form.addEventListener('submit', (e) => e.preventDefault());
+  });
+</script>
+
+<style>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    flex: 1 1 160px;
+    max-width: 320px;
+  }
+
+  span {
+    font: var(--text-small);
+    color: var(--color-text-muted);
+  }
+
+  input,
+  select {
+    min-height: var(--touch);
+    padding-inline: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: var(--text-body);
+  }
+
+  input:hover,
+  select:hover {
+    border-color: var(--color-text-muted);
+  }
+
+  .empty {
+    padding-block: var(--space-4);
+  }
+</style>

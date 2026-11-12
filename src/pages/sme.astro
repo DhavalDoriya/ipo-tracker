@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import IpoList from '../components/IpoList.astro';
+import { loadIpos } from '../lib/data';
+
+const ipos = loadIpos().filter((i) => i.type === 'sme');
+---
+
+<BaseLayout
+  title="SME IPOs"
+  description="SME IPOs on NSE Emerge and BSE SME: dates, price band, lot size, issue size and subscription."
+>
+  <div class="page-head">
+    <h1>SME IPOs</h1>
+    <p>
+      Issues on NSE Emerge and BSE SME. Lot sizes are large and liquidity after listing can be thin.
+    </p>
+  </div>
+  <IpoList ipos={ipos} filter emptyText="No SME IPOs to show right now." />
+</BaseLayout>

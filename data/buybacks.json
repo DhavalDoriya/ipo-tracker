@@ -1,0 +1,35 @@
+{
+  "updated_at": "2026-11-12T09:30:00+00:00",
+  "buybacks": [
+    {
+      "id": "sample-narmada-chemicals-buyback-2026",
+      "name": "Narmada Chemicals Buyback 2026 (Sample)",
+      "type": "tender",
+      "record_date": "2026-11-20",
+      "open_date": null,
+      "close_date": null,
+      "buyback_price": 215,
+      "status": "upcoming"
+    },
+    {
+      "id": "sample-vindhya-software-buyback-2026",
+      "name": "Vindhya Software Buyback 2026 (Sample)",
+      "type": "tender",
+      "record_date": "2026-11-03",
+      "open_date": "2026-11-10",
+      "close_date": "2026-11-16",
+      "buyback_price": 1850,
+      "status": "open"
+    },
+    {
+      "id": "sample-coromandel-paints-buyback-2026",
+      "name": "Coromandel Paints Buyback 2026 (Sample)",
+      "type": "open_market",
+      "record_date": null,
+      "open_date": "2026-09-15",
+      "close_date": "2026-10-30",
+      "buyback_price": 640,
+      "status": "closed"
+    }
+  ]
+}

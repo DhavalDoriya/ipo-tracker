@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { url } from '../../lib/url';
+
+const terms = [
+  ['Price band', 'The range within which you can bid. Retail investors usually bid at "cut-off", which means the final price.'],
+  ['Lot size', 'The minimum number of shares you can apply for. Applications are in multiples of one lot.'],
+  ['Issue size', 'Total value of shares on offer: fresh issue plus offer for sale.'],
+  ['Fresh issue', 'New shares. The money goes to the company.'],
+  ['Offer for Sale (OFS)', 'Existing shareholders selling their shares. The money goes to them, not the company.'],
+  ['Subscription', 'Demand against shares on offer. 5x means bids for five times the shares available.'],
+  ['QIB / HNI / Retail', 'Investor categories: institutions, high-value individual bids, and individual bids up to ₹2 lakh. Each has its own quota.'],
+  ['Mainboard vs SME', 'Mainboard issues list on NSE and BSE. SME issues list on NSE Emerge or BSE SME, with larger lots and thinner trading.'],
+  ['Anchor investors', 'Institutions allotted shares a day before the issue opens, with a lock-in.'],
+  ['P/E (Price to Earnings)', 'Issue price divided by earnings per share. Compare with listed peers, not in isolation.'],
+  ['P/B (Price to Book)', 'Issue price divided by net assets per share. Most useful for lenders.'],
+  ['RoNW (Return on Net Worth)', 'Profit as a percentage of shareholders\' funds. Shows how well the company uses owners\' money.'],
+  ['D/E (Debt to Equity)', 'Borrowings divided by shareholders\' funds. Higher means more leverage.'],
+  ['EBITDA margin', 'Operating profit before interest, tax and depreciation, as a percentage of revenue.'],
+  ['GMP (Grey Market Premium)', 'Unofficial premium at which shares trade before listing. Unregulated and unreliable.'],
+  ['RHP', 'Red Herring Prospectus: the offer document filed with SEBI. The primary source for every number above.'],
+];
+---
+
+<BaseLayout
+  title="IPO terms and KPIs explained"
+  description="Plain-language meanings of IPO terms: price band, lot size, subscription, OFS, P/E, RoNW, GMP and more."
+>
+  <div class="page-head">
+    <p><a href={url('/guides/')}>All guides</a></p>
+    <h1>IPO terms and KPIs explained</h1>
+    <p>The words you will meet on an IPO page and in the prospectus.</p>
+  </div>
+
+  <dl class="terms">
+    {
+      terms.map(([term, meaning]) => (
+        <div>
+          <dt>{term}</dt>
+          <dd>{meaning}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <p class="next">
+    Ready to use them? Open the <a href={url('/checklist/')}>analysis checklist</a>.
+  </p>
+</BaseLayout>
+
+<style>
+  .terms {
+    max-width: 70ch;
+  }
+
+  .terms div {
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  dt {
+    font: var(--text-title);
+  }
+
+  dd {
+    color: var(--color-text-muted);
+  }
+
+  .next {
+    margin-top: var(--space-6);
+  }
+</style>

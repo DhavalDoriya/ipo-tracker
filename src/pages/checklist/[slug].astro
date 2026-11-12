@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ChecklistTable from '../../components/ChecklistTable.astro';
+import Notice from '../../components/Notice.astro';
+import { loadChecklists, type Checklist } from '../../lib/data';
+import { url } from '../../lib/url';
+
+export function getStaticPaths() {
+  return loadChecklists().map((checklist) => ({
+    params: { slug: checklist.slug },
+    props: { checklist },
+  }));
+}
+
+interface Props {
+  checklist: Checklist;
+}
+
+const { checklist } = Astro.props;
+---
+
+<BaseLayout
+  title={`${checklist.company} checklist`}
+  description={`IPO analysis checklist for ${checklist.company}: business, financials, issue details, valuation and management.`}
+>
+  <div class="page-head">
+    <p><a href={url('/checklist/')}>All checklists</a></p>
+    <h1>{checklist.company}</h1>
+    <p>Work through each row using the company's Red Herring Prospectus (RHP).</p>
+  </div>
+
+  <div class="stack">
+    <ChecklistTable checklist={checklist} />
+
+    <section aria-labelledby="gmp">
+      <h2 id="gmp">Bonus: Grey Market Premium (GMP)</h2>
+      <div class="stack gmp">
+        <p>
+          GMP is the premium at which IPO shares change hands unofficially before listing. It hints at
+          listing-day sentiment and nothing more.
+        </p>
+        <Notice>
+          <strong>Caution:</strong> GMP is unofficial, unregulated and volatile. It can be manipulated and
+          says nothing about the business. Never apply on GMP alone.
+        </Notice>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .gmp {
+    margin-top: var(--space-3);
+    max-width: 70ch;
+  }
+</style>

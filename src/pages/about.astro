@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadIposFile } from '../lib/data';
+import { formatUpdated } from '../lib/format';
+
+const { source, updated_at, sample } = loadIposFile();
+---
+
+<BaseLayout title="About" description="What IPO Update is, where its data comes from, and its limits.">
+  <div class="page-head">
+    <h1>About</h1>
+    <p>What this site is, where the data comes from, and what it cannot tell you.</p>
+  </div>
+
+  <div class="prose">
+    <h2>What this is</h2>
+    <p>
+      IPO Update is a free, static information page for IPOs and buybacks in the Indian market, with a
+      checklist for analysing an issue yourself. There are no accounts, ads or tracking.
+    </p>
+
+    <h2>Disclaimer</h2>
+    <p>
+      This site is for informational purposes only and does not constitute financial advice. IPO
+      investments carry risk. Verify all data with NSE, BSE and the registrar before applying. GMP is
+      unofficial and volatile.
+    </p>
+
+    <h2>Sources</h2>
+    <ul>
+      <li>Current data source: {source}.</li>
+      <li>Last updated: <time datetime={updated_at}>{formatUpdated(updated_at)}</time>.</li>
+      <li>GMP, where shown, is entered by hand from unofficial market talk.</li>
+      <li>Checklist guidance is written for this site from publicly known analysis practice.</li>
+    </ul>
+    {
+      sample && (
+        <p>
+          The site currently shows sample data while a data source that permits automated access is
+          being confirmed.
+        </p>
+      )
+    }
+
+    <h2>How it updates</h2>
+    <p>
+      A scheduled job collects public data, checks it, and saves it to the site's repository only when
+      something changed. The site is then rebuilt. Data is a snapshot, typically 30 to 60 minutes old,
+      never real time.
+    </p>
+
+    <h2>Limits</h2>
+    <ul>
+      <li>No allotment status lookup and no applying through this site.</li>
+      <li>Subscription figures are snapshots, not live.</li>
+      <li>GMP is not automated and may be missing.</li>
+      <li>Source pages change; when collection fails, the last good data stays up with its timestamp.</li>
+    </ul>
+
+    <h2>Licence</h2>
+    <p>Code is MIT licensed. Written content is CC BY 4.0.</p>
+  </div>
+</BaseLayout>

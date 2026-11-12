@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import IpoList from '../components/IpoList.astro';
+import { loadIpos } from '../lib/data';
+
+const ipos = loadIpos().filter((i) => i.type === 'mainboard');
+---
+
+<BaseLayout
+  title="Mainboard IPOs"
+  description="Mainboard IPOs on NSE and BSE: dates, price band, lot size, issue size and subscription."
+>
+  <div class="page-head">
+    <h1>Mainboard IPOs</h1>
+    <p>Issues listing on the main boards of NSE and BSE.</p>
+  </div>
+  <IpoList ipos={ipos} filter emptyText="No mainboard IPOs to show right now." />
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+interface Props {
+  status: 'upcoming' | 'open' | 'closed' | 'listed';
+}
+
+const { status } = Astro.props;
+const labels = { upcoming: 'Upcoming', open: 'Open', closed: 'Closed', listed: 'Listed' };
+---
+
+<span class:list={['chip', status]}>{labels[status]}</span>
+
+<style>
+  .chip {
+    display: inline-block;
+    padding: 2px var(--space-3);
+    border-radius: var(--radius-pill);
+    font: var(--text-small);
+    font-weight: 500;
+    white-space: nowrap;
+    background: var(--color-bg);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+  }
+
+  .open {
+    background: var(--color-success-bg);
+    color: var(--color-success);
+    border-color: transparent;
+  }
+
+  .upcoming {
+    background: var(--color-warning-bg);
+    color: var(--color-warning);
+    border-color: transparent;
+  }
+</style>

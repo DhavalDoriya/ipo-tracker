@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { url } from '../../lib/url';
+---
+
+<BaseLayout
+  title="How to apply for an IPO"
+  description="How to apply for an IPO in India through UPI or ASBA, and what happens after you apply."
+>
+  <div class="page-head">
+    <p><a href={url('/guides/')}>All guides</a></p>
+    <h1>How to apply for an IPO</h1>
+    <p>What you need, the two ways to apply, and what happens next.</p>
+  </div>
+
+  <div class="prose">
+    <h2>What you need</h2>
+    <ul>
+      <li>A PAN and a demat account in your own name.</li>
+      <li>A bank account with enough balance for at least one lot at the upper price band.</li>
+      <li>A UPI ID linked to that bank account, or net banking with ASBA.</li>
+    </ul>
+
+    <h2>Option 1: Through your broker with UPI</h2>
+    <ol>
+      <li>Open the IPO section of your broker's app while the issue is open.</li>
+      <li>Choose the number of lots and bid at the cut-off price (retail investors usually do).</li>
+      <li>Enter your UPI ID and submit.</li>
+      <li>Approve the mandate request in your UPI app before the deadline shown in the request.</li>
+    </ol>
+
+    <h2>Option 2: Through your bank with ASBA</h2>
+    <ol>
+      <li>Log in to net banking and open the IPO / ASBA section.</li>
+      <li>Select the issue, enter your demat details, lots and price.</li>
+      <li>Submit. The bank blocks the amount in your account.</li>
+    </ol>
+
+    <h2>What happens after you apply</h2>
+    <ul>
+      <li>The money is blocked, not debited. You keep earning interest on it.</li>
+      <li>After the issue closes, the registrar finalises allotment. Oversubscribed retail issues are decided by lottery, one lot per successful applicant.</li>
+      <li>If you get shares, the amount is debited and shares arrive in your demat account before listing. If not, the block is released.</li>
+      <li>Check allotment on the registrar's website using your PAN or application number. This site does not offer allotment lookup.</li>
+    </ul>
+
+    <h2>Common mistakes</h2>
+    <ul>
+      <li>Applying more than once with the same PAN. All applications are rejected.</li>
+      <li>Not approving the UPI mandate in time.</li>
+      <li>Using a bank account or UPI ID that belongs to someone else.</li>
+    </ul>
+
+    <p class="muted">
+      Processes change. Confirm the current steps with your broker, bank and the offer document.
+    </p>
+  </div>
+</BaseLayout>

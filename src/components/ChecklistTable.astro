@@ -1,0 +1,118 @@
+---
+import type { Checklist } from '../lib/data';
+
+interface Props {
+  checklist: Checklist;
+}
+
+const { checklist } = Astro.props;
+---
+
+<div class="scroll" tabindex="0" role="region" aria-label={`${checklist.company} analysis checklist`}>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Meaning &amp; Where to Find</th>
+        <th scope="col">Analysis</th>
+      </tr>
+    </thead>
+    {
+      checklist.sections.map((section) => (
+        <tbody>
+          <tr class="section">
+            <th scope="colgroup" colspan="3">
+              {section.title}
+            </th>
+          </tr>
+          {section.parameters.map((p) => (
+            <tr>
+              <th scope="row">{p.name}</th>
+              <td>{p.meaning}</td>
+              <td>
+                <p>
+                  <span class="pos">Positive:</span> {p.positive}
+                </p>
+                <p>
+                  <span class="neg">Negative:</span> {p.negative}
+                </p>
+                <p class="verdict">
+                  <span class="muted">Your analysis:</span> {p.analysis ?? 'Not filled in yet'}
+                </p>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      ))
+    }
+  </table>
+</div>
+
+<style>
+  .scroll {
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+
+  table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  thead th {
+    background: var(--color-surface);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .section th {
+    background: var(--color-surface);
+    font: var(--text-title);
+  }
+
+  tbody th[scope='row'] {
+    font-weight: 600;
+    width: 22%;
+  }
+
+  td:nth-child(2) {
+    width: 34%;
+  }
+
+  tbody:last-child tr:last-child > * {
+    border-bottom: 0;
+  }
+
+  td p + p {
+    margin-top: var(--space-1);
+  }
+
+  .pos {
+    color: var(--color-success);
+    font-weight: 600;
+  }
+
+  .neg {
+    color: var(--color-danger);
+    font-weight: 600;
+  }
+
+  .verdict {
+    margin-top: var(--space-2);
+    font-weight: 500;
+  }
+
+  .verdict .muted {
+    font-weight: 400;
+  }
+</style>

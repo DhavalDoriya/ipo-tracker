@@ -1,0 +1,210 @@
+/* Design tokens and base rules. See docs/DESIGN_SYSTEM.md. */
+:root {
+  color-scheme: light dark;
+
+  --color-bg: #ffffff;
+  --color-surface: #f8f9fa;
+  --color-border: #e1e3e1;
+  --color-text: #1f1f1f;
+  --color-text-muted: #444746;
+  --color-primary: #0b57d0;
+  --color-on-primary: #ffffff;
+  --color-link: #1a0dab;
+  --color-success: #146c2e;
+  --color-success-bg: #e6f4ea;
+  --color-warning: #8a5a00;
+  --color-warning-bg: #fef7e0;
+  --color-danger: #b3261e;
+  --color-danger-bg: #fce8e6;
+
+  --font-sans: var(--font-roboto, Roboto), Arial, sans-serif;
+  --text-display: 500 2rem/1.25 var(--font-sans);
+  --text-heading: 600 1.4375rem/1.25 var(--font-sans);
+  --text-title: 600 1rem/1.5 var(--font-sans);
+  --text-body: 400 0.875rem/1.5 var(--font-sans);
+  --text-small: 400 0.75rem/1.5 var(--font-sans);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-section: 48px;
+
+  --radius-sm: 8px;
+  --radius-md: 24px;
+  --radius-pill: 9999px;
+
+  --shadow-card: rgba(60, 64, 67, 0.16) 0 2px 6px 0;
+
+  --dur-fast: 50ms;
+  --dur-base: 250ms;
+  --ease: cubic-bezier(0.38, 0.72, 0, 1);
+
+  --page-width: 1120px;
+  --touch: 44px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #131314;
+    --color-surface: #1e1f20;
+    --color-border: #444746;
+    --color-text: #e3e3e3;
+    --color-text-muted: #c4c7c5;
+    --color-primary: #a8c7fa;
+    --color-on-primary: #062e6f;
+    --color-link: #a8c7fa;
+    --color-success: #6dd58c;
+    --color-success-bg: #0f5223;
+    --color-warning: #fdd663;
+    --color-warning-bg: #5b4300;
+    --color-danger: #f2b8b5;
+    --color-danger-bg: #601410;
+    --shadow-card: rgba(0, 0, 0, 0.5) 0 2px 6px 0;
+  }
+}
+
+@media (min-width: 569px) {
+  :root {
+    --space-section: 96px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: var(--text-body);
+}
+
+h1,
+h2,
+h3,
+p,
+dl,
+dd,
+ul,
+ol {
+  margin: 0;
+}
+
+h1 {
+  font: var(--text-display);
+}
+
+h2 {
+  font: var(--text-heading);
+}
+
+h3 {
+  font: var(--text-title);
+}
+
+a {
+  color: var(--color-link);
+  text-underline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.muted {
+  color: var(--color-text-muted);
+}
+
+.stack > * + * {
+  margin-top: var(--space-4);
+}
+
+.page-head {
+  padding-block: var(--space-6);
+}
+
+.page-head p {
+  margin-top: var(--space-2);
+  color: var(--color-text-muted);
+  max-width: 70ch;
+}
+
+.section {
+  padding-block: var(--space-6);
+}
+
+.section > h2 {
+  margin-bottom: var(--space-4);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 569px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+}
+
+.prose {
+  max-width: 70ch;
+}
+
+.prose > * + * {
+  margin-top: var(--space-4);
+}
+
+.prose h2 {
+  margin-top: var(--space-6);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: var(--space-5);
+}
+
+.prose li + li {
+  margin-top: var(--space-2);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

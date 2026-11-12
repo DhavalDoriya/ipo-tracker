@@ -1,0 +1,29 @@
+---
+import FilterBar from './FilterBar.astro';
+import IpoCard from './IpoCard.astro';
+import { checklistSlugsByIpo, type IpoWithGmp } from '../lib/data';
+
+interface Props {
+  ipos: IpoWithGmp[];
+  filter?: boolean;
+  emptyText?: string;
+}
+
+const { ipos, filter = false, emptyText = 'No IPOs to show right now.' } = Astro.props;
+const checklists = checklistSlugsByIpo();
+---
+
+{
+  ipos.length === 0 ? (
+    <p class="muted">{emptyText}</p>
+  ) : (
+    <div data-filter-scope>
+      {filter && <FilterBar />}
+      <ul class="grid">
+        {ipos.map((ipo) => (
+          <IpoCard ipo={ipo} checklistSlug={checklists.get(ipo.id)} />
+        ))}
+      </ul>
+    </div>
+  )
+}

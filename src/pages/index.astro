@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import IpoList from '../components/IpoList.astro';
+import { loadComingSoon, loadIpos, loadIposFile } from '../lib/data';
+import { formatUpdated, orDash } from '../lib/format';
+import { url } from '../lib/url';
+
+const ipos = loadIpos();
+const { updated_at } = loadIposFile();
+const open = ipos.filter((i) => i.status === 'open');
+const upcoming = ipos.filter((i) => i.status === 'upcoming');
+const recent = ipos.filter((i) => i.status === 'closed' || i.status === 'listed');
+const announced = loadComingSoon();
+---
+
+<BaseLayout
+  title="Today's IPOs"
+  description="Open, upcoming and recently listed mainboard and SME IPOs in India, with dates, price band, lot size and subscription."
+>
+  <div class="page-head">
+    <h1>Today's IPOs</h1>
+    <p>
+      Mainboard and SME issues in India. Updated <time datetime={updated_at}>{formatUpdated(updated_at)}</time>.
+    </p>
+  </div>
+
+  <section class="section" aria-labelledby="open">
+    <h2 id="open">Open now</h2>
+    <IpoList ipos={open} emptyText="No IPOs open right now." />
+  </section>
+
+  <section class="section" aria-labelledby="soon">
+    <h2 id="soon">Coming soon</h2>
+    <IpoList ipos={upcoming} emptyText="No dated IPOs announced yet." />
+    {
+      announced.length > 0 && (
+        <div class="announced">
+          <h3>Announced, dates awaited</h3>
+          <ul>
+            {announced.map((a) => (
+              <li>
+                <span class="name">{a.name}</span>
+                <span class="muted">
+                  {a.type === 'sme' ? 'SME' : 'Mainboard'} · {a.exchange} · Expected {orDash(a.expected)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </section>
+
+  <section class="section" aria-labelledby="recent">
+    <h2 id="recent">Recently closed and listed</h2>
+    <IpoList ipos={recent} emptyText="Nothing closed or listed recently." />
+  </section>
+
+  <p>
+    New to IPOs? Use the <a href={url('/checklist/')}>analysis checklist</a> or read
+    <a href={url('/guides/how-to-apply/')}>how to apply</a>.
+  </p>
+</BaseLayout>
+
+<style>
+  .announced {
+    margin-top: var(--space-6);
+  }
+
+  .announced ul {
+    margin-top: var(--space-2);
+    padding: 0;
+    list-style: none;
+  }
+
+  .announced li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-1) var(--space-4);
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .name {
+    font-weight: 500;
+  }
+</style>

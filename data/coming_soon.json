@@ -1,0 +1,21 @@
+{
+  "updated_at": "2026-11-12T09:30:00+00:00",
+  "ipos": [
+    {
+      "id": "sample-deccan-semicon",
+      "name": "Deccan Semicon (Sample)",
+      "type": "mainboard",
+      "exchange": "NSE, BSE",
+      "expected": "December 2026",
+      "source_url": null
+    },
+    {
+      "id": "sample-konkan-agro",
+      "name": "Konkan Agro Exports (Sample)",
+      "type": "sme",
+      "exchange": "NSE SME",
+      "expected": null,
+      "source_url": null
+    }
+  ]
+}

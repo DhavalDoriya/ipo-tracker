@@ -1,0 +1,131 @@
+---
+import StatusChip from './StatusChip.astro';
+import type { IpoWithGmp } from '../lib/data';
+import {
+  DASH,
+  formatDate,
+  formatDateRange,
+  formatInr,
+  formatNumber,
+  formatPriceBand,
+  orDash,
+} from '../lib/format';
+import { url } from '../lib/url';
+
+interface Props {
+  ipo: IpoWithGmp;
+  checklistSlug?: string;
+}
+
+const { ipo, checklistSlug } = Astro.props;
+const breakup = ipo.subscription_breakup;
+const gmp =
+  ipo.gmp == null ? DASH : `${formatInr(ipo.gmp)}${ipo.gmp_percent ? ` (${ipo.gmp_percent})` : ''}`;
+---
+
+<li class="card" data-ipo-card data-name={ipo.name.toLowerCase()} data-status={ipo.status}>
+  <article>
+    <header>
+      <div>
+        <h3>{ipo.name}</h3>
+        <p class="muted meta">{ipo.type === 'sme' ? 'SME' : 'Mainboard'} · {ipo.exchange}</p>
+      </div>
+      <StatusChip status={ipo.status} />
+    </header>
+
+    <dl>
+      <div><dt>Open – close</dt><dd>{formatDateRange(ipo.open_date, ipo.close_date)}</dd></div>
+      <div><dt>Price band</dt><dd>{formatPriceBand(ipo.offer_price)}</dd></div>
+      <div><dt>Lot size</dt><dd>{ipo.lot_size == null ? DASH : `${formatNumber(ipo.lot_size)} shares`}</dd></div>
+      <div><dt>Issue size</dt><dd>{orDash(ipo.issue_size)}</dd></div>
+      <div><dt>Subscription</dt><dd>{orDash(ipo.subscription)}</dd></div>
+      <div><dt>Listing</dt><dd>{formatDate(ipo.listing_date)}</dd></div>
+      {ipo.list_price != null && <div><dt>List price</dt><dd>{formatInr(ipo.list_price)}</dd></div>}
+      <div><dt>GMP (unofficial)</dt><dd>{gmp}</dd></div>
+    </dl>
+
+    {
+      breakup && (
+        <p class="muted breakup">
+          Retail {orDash(breakup.retail)} · HNI {orDash(breakup.hni)} · QIB {orDash(breakup.qib)}
+        </p>
+      )
+    }
+
+    {
+      (checklistSlug || ipo.source_url) && (
+        <p class="links">
+          {checklistSlug && <a href={url(`/checklist/${checklistSlug}/`)}>Analysis checklist</a>}
+          {ipo.source_url && (
+            <a href={ipo.source_url} rel="noopener noreferrer">
+              Source
+            </a>
+          )}
+        </p>
+      )
+    }
+  </article>
+</li>
+
+<style>
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    transition: box-shadow var(--dur-base) var(--ease);
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-card);
+  }
+
+  .card[hidden] {
+    display: none;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .meta {
+    font: var(--text-small);
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3) var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  dt {
+    font: var(--text-small);
+    color: var(--color-text-muted);
+  }
+
+  dd {
+    font-weight: 500;
+  }
+
+  .breakup {
+    margin-top: var(--space-3);
+    font: var(--text-small);
+  }
+
+  .links {
+    display: flex;
+    gap: var(--space-4);
+    margin-top: var(--space-3);
+  }
+
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch);
+    font-weight: 500;
+  }
+</style>

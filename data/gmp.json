@@ -1,0 +1,7 @@
+{
+  "updated_at": "2026-11-12T09:30:00+00:00",
+  "note": "GMP is unofficial and volatile. Entered by hand. Verify before use.",
+  "entries": [
+    { "id": "sample-northwind-logistics", "gmp": 36, "percent": "8.3%" }
+  ]
+}

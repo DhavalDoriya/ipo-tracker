@@ -1,0 +1,15 @@
+---
+// Caution block: sample-data banner, GMP warning.
+---
+
+<p class="notice" role="note"><slot /></p>
+
+<style>
+  .notice {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    background: var(--color-warning-bg);
+    color: var(--color-text);
+    border-left: 4px solid var(--color-warning);
+  }
+</style>

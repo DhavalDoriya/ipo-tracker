@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { loadChecklists } from '../../lib/data';
+import { url } from '../../lib/url';
+
+const checklists = loadChecklists();
+---
+
+<BaseLayout
+  title="IPO analysis checklist"
+  description="A 14-point checklist for analysing an IPO: business, financials, issue details, valuation and management."
+>
+  <div class="page-head">
+    <h1>IPO analysis checklist</h1>
+    <p>
+      Fourteen parameters in five sections, each with what it means, where to find it in the RHP, and
+      what a good or bad answer looks like.
+    </p>
+  </div>
+  {
+    checklists.length === 0 ? (
+      <p class="muted">No checklists published yet.</p>
+    ) : (
+      <ul class="list">
+        {checklists.map((c) => (
+          <li>
+            <a href={url(`/checklist/${c.slug}/`)}>{c.company}</a>
+            <span class="muted">
+              {c.sections.reduce((n, s) => n + s.parameters.length, 0)} parameters
+            </span>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .list {
+    padding: 0;
+    list-style: none;
+    max-width: 70ch;
+  }
+
+  .list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    min-height: var(--touch);
+    padding-block: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .list a {
+    font: var(--text-title);
+  }
+</style>
