@@ -53,7 +53,7 @@ Roboto (self-hosted), fallback `Arial, sans-serif`.
 ## Components and states
 Shared classes live in `global.css`: `.card`, `.btn`, `.btn-tonal`, `.rows`, `.actions`, `.grid`.
 
-- **Header**: logo mark + name, theme toggle, pill nav; sticky from 900px, and on smaller screens the nav is a scrolling row under the brand. Hover: surface. Active page: primary-container + `aria-current`. Focus: 2px primary outline.
+- **Header**: sticky single row with logo mark + name and the theme toggle. From 900px the pill nav sits in the bar. Below that a menu button opens a full-width sheet with every link as a 48px row; it closes on Escape or a tap outside, and works without JavaScript (`<details>`). Active page: primary-container + `aria-current`. Hover: surface. Active page: primary-container + `aria-current`. Focus: 2px primary outline.
 - **Hero** (home only): surface panel, `--radius-md`, holding the page title, a one-line summary and the search. The search box is the one prominent element on the page.
 - **Search + status chips** (`FilterBar`): pill search box, 52px, white on the panel; hover and focus lift it with `--shadow-card`. Chips are radio buttons with a status-coloured dot and a count: unselected = outlined, selected = primary-container. No result in a group shows "No IPOs here match your search."
 - **Card** (`.card`; `IpoCard`, `BuybackCard`): outlined, `--radius-md`. Hover: shadow replaces the border. Rows without data are left out rather than shown as a dash.
@@ -73,7 +73,7 @@ Shared classes live in `global.css`: `.card`, `.btn`, `.btn-tonal`, `.rows`, `.a
 - Loading and error states do not exist: pages are built ahead of time. A failed build never deploys.
 
 ## Breakpoints
-Mobile first. `569px`: cards go from 1 column to an auto-fill grid, panels get more padding, footer goes from 2 to 3 columns. `900px`: header becomes a single sticky row.
+Mobile first. `569px`: cards go from 1 column to an auto-fill grid, panels get more padding, footer goes from 2 to 3 columns. `900px`: header links move from the menu sheet into the bar.
 
 ## Accessibility
 - Text contrast >= 4.5:1 in both themes; touch targets >= 44px.
