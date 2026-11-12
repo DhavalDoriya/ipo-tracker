@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FilterBar from '../components/FilterBar.astro';
 import IpoList from '../components/IpoList.astro';
 import { loadIpos } from '../lib/data';
 
@@ -14,5 +15,16 @@ const ipos = loadIpos().filter((i) => i.type === 'mainboard');
     <h1>Mainboard IPOs</h1>
     <p>Issues listing on the main boards of NSE and BSE.</p>
   </div>
-  <IpoList ipos={ipos} filter emptyText="No mainboard IPOs to show right now." />
+  <div data-filter-scope>
+    <div class="filter">
+      <FilterBar />
+    </div>
+    <IpoList ipos={ipos} emptyText="No mainboard IPOs to show right now." />
+  </div>
 </BaseLayout>
+
+<style>
+  .filter {
+    margin-bottom: var(--space-5);
+  }
+</style>

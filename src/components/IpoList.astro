@@ -1,29 +1,40 @@
 ---
-import FilterBar from './FilterBar.astro';
 import IpoCard from './IpoCard.astro';
 import { checklistSlugsByIpo, type IpoWithGmp } from '../lib/data';
 
 interface Props {
   ipos: IpoWithGmp[];
-  filter?: boolean;
+  /** Show only the first N cards until "Show all" is pressed. 0 = show everything. */
+  limit?: number;
   emptyText?: string;
 }
 
-const { ipos, filter = false, emptyText = 'No IPOs to show right now.' } = Astro.props;
+const { ipos, limit = 0, emptyText = 'No IPOs to show right now.' } = Astro.props;
 const checklists = checklistSlugsByIpo();
 ---
 
-{
-  ipos.length === 0 ? (
-    <p class="muted">{emptyText}</p>
-  ) : (
-    <div data-filter-scope>
-      {filter && <FilterBar />}
-      <ul class="grid">
-        {ipos.map((ipo) => (
-          <IpoCard ipo={ipo} checklistSlug={checklists.get(ipo.id)} />
-        ))}
-      </ul>
-    </div>
-  )
-}
+<div data-filter-group data-limit={limit}>
+  {
+    ipos.length === 0 ? (
+      <p class="muted">{emptyText}</p>
+    ) : (
+      <>
+        <ul class="grid">
+          {ipos.map((ipo, i) => (
+            <IpoCard ipo={ipo} checklistSlug={checklists.get(ipo.id)} hidden={limit > 0 && i >= limit} />
+          ))}
+        </ul>
+        <p class="muted" data-group-empty hidden>
+          No IPOs here match your search.
+        </p>
+        {limit > 0 && ipos.length > limit && (
+          <div class="actions">
+            <button class="btn btn-tonal" type="button" data-more>
+              Show all {ipos.length}
+            </button>
+          </div>
+        )}
+      </>
+    )
+  }
+</div>

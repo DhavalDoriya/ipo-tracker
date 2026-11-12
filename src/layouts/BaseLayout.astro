@@ -26,6 +26,17 @@ const { sample } = loadIposFile();
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <Font cssVariable="--font-roboto" preload />
+    <noscript>
+      <style>
+        [data-ipo-card][hidden] {
+          display: block !important;
+        }
+        [data-more],
+        [data-filter-form] {
+          display: none !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>

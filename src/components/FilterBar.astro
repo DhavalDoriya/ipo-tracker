@@ -1,90 +1,187 @@
 ---
-// Filters the [data-ipo-card] items inside the nearest [data-filter-scope]. Works as an
-// enhancement: without JavaScript the full list stays visible.
+// Search box and status chips. Filters every [data-ipo-card] inside the nearest
+// [data-filter-scope], group by group ([data-filter-group], see IpoList). A group with
+// data-limit shows only its first N items until "Show all" is pressed or a filter is active.
+// Enhancement only: without JavaScript every item is visible (see BaseLayout noscript).
+const statuses = [
+  { value: '', label: 'All' },
+  { value: 'open', label: 'Open' },
+  { value: 'upcoming', label: 'Upcoming' },
+  { value: 'closed', label: 'Closed' },
+  { value: 'listed', label: 'Listed' },
+];
 ---
 
 <form class="filters" data-filter-form role="search" aria-label="Filter IPOs">
-  <label>
-    <span>Search</span>
-    <input type="search" name="q" placeholder="Company name" autocomplete="off" />
+  <label class="search">
+    <span class="visually-hidden">Search by company name</span>
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9"
+      ></path>
+    </svg>
+    <input type="search" name="q" placeholder="Search by company name" autocomplete="off" />
   </label>
-  <label>
-    <span>Status</span>
-    <select name="status">
-      <option value="">All</option>
-      <option value="open">Open</option>
-      <option value="upcoming">Upcoming</option>
-      <option value="closed">Closed</option>
-      <option value="listed">Listed</option>
-    </select>
-  </label>
+  <fieldset class="chips">
+    <legend class="visually-hidden">Status</legend>
+    {
+      statuses.map((s) => (
+        <label class="chip">
+          <input type="radio" name="status" value={s.value} checked={s.value === ''} />
+          <span>{s.label}</span>
+        </label>
+      ))
+    }
+  </fieldset>
 </form>
-<p class="muted empty" data-filter-empty hidden aria-live="polite">No IPOs match your filter.</p>
 
 <script>
   document.querySelectorAll<HTMLElement>('[data-filter-scope]').forEach((scope) => {
     const form = scope.querySelector<HTMLFormElement>('[data-filter-form]');
-    const empty = scope.querySelector<HTMLElement>('[data-filter-empty]');
-    const cards = [...scope.querySelectorAll<HTMLElement>('[data-ipo-card]')];
-    if (!form || !empty) return;
+    const groups = [...scope.querySelectorAll<HTMLElement>('[data-filter-group]')];
+    if (!form) return;
 
     const apply = () => {
       const data = new FormData(form);
       const q = String(data.get('q') ?? '').trim().toLowerCase();
       const status = String(data.get('status') ?? '');
-      let shown = 0;
-      for (const card of cards) {
-        const match =
-          (card.dataset.name ?? '').includes(q) && (!status || card.dataset.status === status);
-        card.hidden = !match;
-        if (match) shown++;
+      const filtering = q !== '' || status !== '';
+
+      for (const group of groups) {
+        const items = [...group.querySelectorAll<HTMLElement>('[data-ipo-card]')];
+        const limit = Number(group.dataset.limit ?? 0);
+        const capped = limit > 0 && !filtering && group.dataset.expanded !== 'true';
+        let matched = 0;
+        for (const item of items) {
+          const match =
+            (item.dataset.name ?? '').includes(q) && (!status || item.dataset.status === status);
+          if (match) matched++;
+          item.hidden = !match || (capped && matched > limit);
+        }
+        const empty = group.querySelector<HTMLElement>('[data-group-empty]');
+        if (empty) empty.hidden = items.length === 0 || matched > 0;
+        const more = group.querySelector<HTMLElement>('[data-more]');
+        if (more) more.hidden = !capped || items.length <= limit;
       }
-      empty.hidden = shown > 0;
     };
 
     form.addEventListener('input', apply);
     form.addEventListener('submit', (e) => e.preventDefault());
+    for (const group of groups) {
+      group.querySelector('[data-more]')?.addEventListener('click', () => {
+        group.dataset.expanded = 'true';
+        apply();
+      });
+    }
   });
 </script>
 
 <style>
   .filters {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    margin-bottom: var(--space-4);
-  }
-
-  label {
-    display: flex;
     flex-direction: column;
-    gap: var(--space-1);
-    flex: 1 1 160px;
-    max-width: 320px;
+    gap: var(--space-3);
   }
 
-  span {
-    font: var(--text-small);
+  .search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+    max-width: 584px;
+    min-height: 52px;
+    padding-inline: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background: var(--color-bg);
+    color: var(--color-text-muted);
+    transition:
+      box-shadow var(--dur-base) var(--ease),
+      border-color var(--dur-base) var(--ease);
+  }
+
+  .search:hover,
+  .search:focus-within {
+    box-shadow: var(--shadow-card);
+    border-color: transparent;
+  }
+
+  .search:focus-within {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .search svg {
+    flex: none;
+  }
+
+  input[type='search'] {
+    flex: 1;
+    min-width: 0;
+    min-height: 48px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--color-text);
+    font: 400 1rem/1.5 var(--font-sans);
+  }
+
+  input[type='search']::placeholder {
     color: var(--color-text-muted);
   }
 
-  input,
-  select {
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .chip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
     min-height: var(--touch);
+    cursor: pointer;
+  }
+
+  .chip input {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .chip span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
     padding-inline: var(--space-4);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-pill);
+    background: var(--color-bg);
+    color: var(--color-text-muted);
+    font-weight: 500;
+    transition: background-color var(--dur-base) var(--ease);
+  }
+
+  .chip:hover span {
     background: var(--color-surface);
     color: var(--color-text);
-    font: var(--text-body);
   }
 
-  input:hover,
-  select:hover {
-    border-color: var(--color-text-muted);
+  .chip input:checked + span {
+    border-color: transparent;
+    background: var(--color-primary-container);
+    color: var(--color-on-primary-container);
   }
 
-  .empty {
-    padding-block: var(--space-4);
+  .chip input:focus-visible + span {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
 </style>

@@ -1,58 +1,115 @@
 ---
 import StatusChip from './StatusChip.astro';
 import type { IpoWithGmp } from '../lib/data';
-import {
-  DASH,
-  formatDate,
-  formatDateRange,
-  formatInr,
-  formatNumber,
-  formatPriceBand,
-  orDash,
-} from '../lib/format';
+import { formatDayMonth, formatInr, formatNumber, formatPriceBand, listingGain } from '../lib/format';
 import { url } from '../lib/url';
 
 interface Props {
   ipo: IpoWithGmp;
   checklistSlug?: string;
+  hidden?: boolean;
 }
 
-const { ipo, checklistSlug } = Astro.props;
+const { ipo, checklistSlug, hidden = false } = Astro.props;
 const breakup = ipo.subscription_breakup;
-const gmp =
-  ipo.gmp == null ? DASH : `${formatInr(ipo.gmp)}${ipo.gmp_percent ? ` (${ipo.gmp_percent})` : ''}`;
+const price = ipo.offer_price;
+const gain = listingGain(price?.max, ipo.list_price);
+
+// How far the issue has got: 0 = announced, 1 = opened, 2 = closed, 3 = listed.
+const reached = { upcoming: 0, open: 1, closed: 2, listed: 3 }[ipo.status];
+const steps = [
+  { label: 'Opens', date: ipo.open_date },
+  { label: 'Closes', date: ipo.close_date },
+  { label: 'Lists', date: ipo.listing_date },
+];
+const sourceHost = ipo.source_url ? new URL(ipo.source_url).hostname.replace(/^www\./, '') : null;
 ---
 
-<li class="card" data-ipo-card data-name={ipo.name.toLowerCase()} data-status={ipo.status}>
+<li class="card" data-ipo-card data-name={ipo.name.toLowerCase()} data-status={ipo.status} hidden={hidden}>
   <article>
     <header>
       <div>
         <h3>{ipo.name}</h3>
         <p class="muted meta">
-          {[ipo.type === 'sme' ? 'SME' : 'Mainboard', ipo.exchange].filter(Boolean).join(' · ')}
+          {ipo.type === 'sme' ? 'SME' : 'Mainboard'}{ipo.exchange && `, ${ipo.exchange}`}
         </p>
       </div>
       <StatusChip status={ipo.status} />
     </header>
 
-    <dl>
-      <div><dt>Open – close</dt><dd>{formatDateRange(ipo.open_date, ipo.close_date)}</dd></div>
-      <div><dt>Price band</dt><dd>{formatPriceBand(ipo.offer_price)}</dd></div>
-      {ipo.lot_size != null && <div><dt>Lot size</dt><dd>{formatNumber(ipo.lot_size)} shares</dd></div>}
-      {ipo.issue_size && <div><dt>Issue size</dt><dd>{ipo.issue_size}</dd></div>}
-      <div><dt>Subscription</dt><dd>{orDash(ipo.subscription)}</dd></div>
-      <div><dt>Listing</dt><dd>{formatDate(ipo.listing_date)}</dd></div>
-      {ipo.list_price != null && <div><dt>List price</dt><dd>{formatInr(ipo.list_price)}</dd></div>}
-      <div><dt>GMP (unofficial)</dt><dd>{gmp}</dd></div>
+    <dl class="figures">
+      <div>
+        <dt>{price && price.min !== price.max ? 'Price band' : 'Issue price'}</dt>
+        <dd>{formatPriceBand(price)}</dd>
+      </div>
+      {
+        ipo.subscription && (
+          <div>
+            <dt>Subscribed</dt>
+            <dd>{ipo.subscription}</dd>
+          </div>
+        )
+      }
+      {
+        ipo.list_price != null && (
+          <div>
+            <dt>Listed at</dt>
+            <dd>
+              {formatInr(ipo.list_price)}
+              {gain && (
+                <span class:list={['gain', { up: gain.pct > 0, down: gain.pct < 0 }]}>{gain.text}</span>
+              )}
+            </dd>
+          </div>
+        )
+      }
+      {
+        ipo.lot_size != null && (
+          <div>
+            <dt>Lot size</dt>
+            <dd>{formatNumber(ipo.lot_size)} shares</dd>
+          </div>
+        )
+      }
+      {
+        ipo.issue_size && (
+          <div>
+            <dt>Issue size</dt>
+            <dd>{ipo.issue_size}</dd>
+          </div>
+        )
+      }
+      {
+        ipo.gmp != null && (
+          <div>
+            <dt>GMP (unofficial)</dt>
+            <dd>
+              {formatInr(ipo.gmp)}
+              {ipo.gmp_percent && <span class="gain">{ipo.gmp_percent}</span>}
+            </dd>
+          </div>
+        )
+      }
     </dl>
 
     {
       breakup && (
         <p class="muted breakup">
-          Retail {orDash(breakup.retail)} · HNI {orDash(breakup.hni)} · QIB {orDash(breakup.qib)}
+          Retail {breakup.retail ?? '—'}, HNI {breakup.hni ?? '—'}, QIB {breakup.qib ?? '—'}
         </p>
       )
     }
+
+    <ol class="timeline" aria-label="Issue dates">
+      {
+        steps.map((step, i) => (
+          <li class:list={{ done: reached > i, through: reached > i + 1 }}>
+            <span class="label">{step.label}</span>
+            <span class="date">{formatDayMonth(step.date)}</span>
+          </li>
+        ))
+      }
+    </ol>
 
     {
       (checklistSlug || ipo.source_url) && (
@@ -60,7 +117,7 @@ const gmp =
           {checklistSlug && <a href={url(`/checklist/${checklistSlug}/`)}>Analysis checklist</a>}
           {ipo.source_url && (
             <a href={ipo.source_url} rel="noopener noreferrer">
-              Source
+              View on {sourceHost}
             </a>
           )}
         </p>
@@ -70,22 +127,6 @@ const gmp =
 </li>
 
 <style>
-  .card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: var(--space-5);
-    transition: box-shadow var(--dur-base) var(--ease);
-  }
-
-  .card:hover {
-    box-shadow: var(--shadow-card);
-  }
-
-  .card[hidden] {
-    display: none;
-  }
-
   header {
     display: flex;
     justify-content: space-between;
@@ -97,10 +138,10 @@ const gmp =
     font: var(--text-small);
   }
 
-  dl {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-3) var(--space-4);
+  .figures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-6);
     margin-top: var(--space-4);
   }
 
@@ -110,18 +151,100 @@ const gmp =
   }
 
   dd {
+    font: var(--text-figure);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .gain {
+    margin-left: var(--space-2);
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-pill);
+    font: var(--text-small);
     font-weight: 500;
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    vertical-align: middle;
+  }
+
+  .gain.up {
+    background: var(--color-success-bg);
+    color: var(--color-success);
+  }
+
+  .gain.down {
+    background: var(--color-danger-bg);
+    color: var(--color-danger);
   }
 
   .breakup {
-    margin-top: var(--space-3);
+    margin-top: var(--space-2);
     font: var(--text-small);
+  }
+
+  /* Open -> close -> listing. A dot fills once that step has happened. */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: var(--space-5);
+    padding: var(--space-4) 0 0;
+    list-style: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .timeline li {
+    position: relative;
+    padding-top: var(--space-4);
+  }
+
+  .timeline li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-pill);
+    border: 2px solid var(--color-text-muted);
+    background: var(--color-bg);
+    box-sizing: border-box;
+  }
+
+  .timeline li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 14px;
+    right: 4px;
+    height: 2px;
+    border-radius: var(--radius-pill);
+    background: var(--color-border);
+  }
+
+  .timeline li.done::before {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+  }
+
+  .timeline li.through::after {
+    background: var(--color-primary);
+  }
+
+  .label {
+    display: block;
+    font: var(--text-small);
+    color: var(--color-text-muted);
+  }
+
+  .date {
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
   }
 
   .links {
     display: flex;
-    gap: var(--space-4);
-    margin-top: var(--space-3);
+    flex-wrap: wrap;
+    gap: 0 var(--space-5);
+    margin-top: var(--space-2);
   }
 
   .links a {

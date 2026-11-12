@@ -21,7 +21,7 @@ const checklists = loadChecklists();
     checklists.length === 0 ? (
       <p class="muted">No checklists published yet.</p>
     ) : (
-      <ul class="list">
+      <ul class="rows hub">
         {checklists.map((c) => (
           <li>
             <a href={url(`/checklist/${c.slug}/`)}>{c.company}</a>
@@ -36,23 +36,7 @@ const checklists = loadChecklists();
 </BaseLayout>
 
 <style>
-  .list {
-    padding: 0;
-    list-style: none;
+  .hub {
     max-width: 70ch;
-  }
-
-  .list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--space-4);
-    min-height: var(--touch);
-    padding-block: var(--space-2);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .list a {
-    font: var(--text-title);
   }
 </style>

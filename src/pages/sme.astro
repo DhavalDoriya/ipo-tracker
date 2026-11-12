@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FilterBar from '../components/FilterBar.astro';
 import IpoList from '../components/IpoList.astro';
 import { loadIpos } from '../lib/data';
 
@@ -16,5 +17,16 @@ const ipos = loadIpos().filter((i) => i.type === 'sme');
       Issues on NSE Emerge and BSE SME. Lot sizes are large and liquidity after listing can be thin.
     </p>
   </div>
-  <IpoList ipos={ipos} filter emptyText="No SME IPOs to show right now." />
+  <div data-filter-scope>
+    <div class="filter">
+      <FilterBar />
+    </div>
+    <IpoList ipos={ipos} emptyText="No SME IPOs to show right now." />
+  </div>
 </BaseLayout>
+
+<style>
+  .filter {
+    margin-bottom: var(--space-5);
+  }
+</style>

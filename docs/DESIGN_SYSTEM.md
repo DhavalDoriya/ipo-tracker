@@ -18,6 +18,7 @@ Based on the "Google Material 3" design.md kit. Tokens live in `src/styles/globa
 | `--color-text-muted` | `#444746` | `#c4c7c5` | Labels, secondary text |
 | `--color-primary` | `#0b57d0` | `#a8c7fa` | Buttons, active nav, focus ring |
 | `--color-on-primary` | `#ffffff` | `#062e6f` | Text on primary |
+| `--color-primary-container` / `--color-on-primary-container` | `#d3e3fd` / `#041e49` | `#0842a0` / `#d3e3fd` | Selected state: active nav, selected chip, tonal button, table header |
 | `--color-link` | `#1a0dab` | `#a8c7fa` | Text links |
 | `--color-success` / `-bg` | `#146c2e` / `#e6f4ea` | `#6dd58c` / `#0f5223` | Open, positive |
 | `--color-warning` / `-bg` | `#8a5a00` / `#fef7e0` | `#fdd663` / `#5b4300` | Upcoming, caution |
@@ -32,6 +33,7 @@ Roboto (self-hosted), fallback `Arial, sans-serif`.
 | `--text-display` | 32px / 500 / 1.25 | Page title |
 | `--text-heading` | 23px / 600 / 1.25 | Section title |
 | `--text-title` | 16px / 600 / 1.5 | Card title |
+| `--text-figure` | 18px / 500 / 1.25 | Key numbers on a card (price, subscription) |
 | `--text-body` | 14px / 400 / 1.5 | Everything else |
 | `--text-small` | 12px / 400 / 1.5 | Meta, chips |
 
@@ -42,12 +44,20 @@ Roboto (self-hosted), fallback `Arial, sans-serif`.
 - Motion: `--dur-fast` 50ms, `--dur-base` 250ms, `--ease` `cubic-bezier(0.38, 0.72, 0, 1)`. All transitions off under `prefers-reduced-motion`.
 
 ## Components and states
-- **Button / nav link**: pill, min height 44px. Hover: surface tint. Focus: 2px primary outline, 2px offset. Active page: primary text + `aria-current`.
-- **Card** (`IpoCard`, `BuybackCard`): surface background, `--radius-md`, shadow on hover only. Missing values render as "—".
-- **Status chip**: pill, 12px; open = success, upcoming = warning, closed / listed = neutral.
-- **FilterBar**: search input + status select, 44px tall. Empty result shows "No IPOs match your filter."
-- **ChecklistTable**: header row on surface; wrapped in a horizontally scrolling region with `tabindex="0"` and a label.
-- **Empty state**: muted sentence in place of the list ("No IPOs open right now.").
+Shared classes live in `global.css`: `.card`, `.btn`, `.btn-tonal`, `.rows`, `.actions`, `.grid`.
+
+- **Header**: sticky, logo mark + name, pill nav. Hover: surface. Active page: primary-container + `aria-current`. Focus: 2px primary outline.
+- **Hero** (home only): surface panel, `--radius-md`, holding the page title, a one-line summary and the search. The search box is the one prominent element on the page.
+- **Search + status chips** (`FilterBar`): pill search box, 52px, white on the panel; hover and focus lift it with `--shadow-card`. Chips are radio buttons: unselected = outlined, selected = primary-container. No result in a group shows "No IPOs here match your search."
+- **Card** (`.card`; `IpoCard`, `BuybackCard`): outlined, `--radius-md`. Hover: shadow replaces the border. Rows without data are left out rather than shown as a dash.
+- **Issue timeline** (in `IpoCard`): Opens, Closes, Lists. A dot and its connecting line fill with primary once that step has happened.
+- **Listing gain**: small pill after the listing price; success colours when up, danger when down, neutral at zero.
+- **Status chip**: pill, 12px; open = success, upcoming = warning, closed / listed = neutral outline.
+- **Button** (`.btn`): filled primary pill, min height 44px; `.btn-tonal` uses primary-container. Hover: shadow. One filled button per view at most.
+- **Rows** (`.rows`): bordered list for the pipeline, checklist hub and guides. Hover: surface.
+- **Show all**: long lists show the first few items with a tonal "Show all N" button; searching or filtering always looks through everything.
+- **ChecklistTable**: column header on primary-container, section rows on surface; wrapped in a horizontally scrolling region with `tabindex="0"` and a label.
+- **Empty state**: muted sentence in place of the list ("No IPOs are open for bidding today.").
 - **Notice**: warning-bg block used for the GMP caution and sample-data banner.
 - Loading and error states do not exist: pages are built ahead of time. A failed build never deploys.
 

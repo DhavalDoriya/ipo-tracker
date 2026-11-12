@@ -12,7 +12,7 @@ Only rules a linter cannot enforce.
 - One component per file.
 
 ## Patterns to use
-- Scoped `<style>` in each component; shared tokens and base rules only in `global.css`.
+- Scoped `<style>` in each component; tokens, base rules and the few shared classes (`.card`, `.btn`, `.rows`) only in `global.css`.
 - Pass data to components as typed props.
 - Format every date and amount through `src/lib/format.ts`.
 - Build every internal link with `url()` from `src/lib/url.ts`.

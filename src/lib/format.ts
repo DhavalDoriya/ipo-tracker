@@ -29,6 +29,22 @@ export function formatDate(date: string | null | undefined): string {
   return `${d} ${MONTHS[m - 1]} ${y}`;
 }
 
+/** '2026-11-12' -> '12 Nov'. For compact timelines where the year is obvious. */
+export function formatDayMonth(date: string | null | undefined): string {
+  if (!date) return DASH;
+  const [, m, d] = date.split('-').map(Number);
+  if (!m || !d) return DASH;
+  return `${d} ${MONTHS[m - 1]}`;
+}
+
+/** Listing gain against the issue price as '+18.2%' / '−20.0%'; null when either is missing. */
+export function listingGain(issue: number | null | undefined, listed: number | null | undefined) {
+  if (!issue || listed == null) return null;
+  const pct = ((listed - issue) / issue) * 100;
+  const sign = pct > 0 ? '+' : pct < 0 ? '−' : '';
+  return { pct, text: `${sign}${Math.abs(pct).toFixed(1)}%` };
+}
+
 export function formatDateRange(from: string | null, to: string | null): string {
   if (!from && !to) return DASH;
   return `${formatDate(from)} – ${formatDate(to)}`;

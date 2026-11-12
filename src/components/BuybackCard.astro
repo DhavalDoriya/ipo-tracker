@@ -20,26 +20,14 @@ const { buyback } = Astro.props;
       <StatusChip status={buyback.status} />
     </header>
     <dl>
-      <div><dt>Buyback price</dt><dd>{formatInr(buyback.buyback_price)}</dd></div>
+      <div class="price"><dt>Buyback price</dt><dd>{formatInr(buyback.buyback_price)}</dd></div>
       <div><dt>Record date</dt><dd>{formatDate(buyback.record_date)}</dd></div>
-      <div class="wide"><dt>Open – close</dt><dd>{formatDateRange(buyback.open_date, buyback.close_date)}</dd></div>
+      <div><dt>Open to close</dt><dd>{formatDateRange(buyback.open_date, buyback.close_date)}</dd></div>
     </dl>
   </article>
 </li>
 
 <style>
-  .card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: var(--space-5);
-    transition: box-shadow var(--dur-base) var(--ease);
-  }
-
-  .card:hover {
-    box-shadow: var(--shadow-card);
-  }
-
   header {
     display: flex;
     justify-content: space-between;
@@ -52,14 +40,10 @@ const { buyback } = Astro.props;
   }
 
   dl {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-3) var(--space-4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-6);
     margin-top: var(--space-4);
-  }
-
-  .wide {
-    grid-column: 1 / -1;
   }
 
   dt {
@@ -69,5 +53,10 @@ const { buyback } = Astro.props;
 
   dd {
     font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .price dd {
+    font: var(--text-figure);
   }
 </style>
