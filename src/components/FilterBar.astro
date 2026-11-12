@@ -67,7 +67,9 @@ const statuses: { value: '' | 'open' | 'upcoming' | 'closed' | 'listed'; label: 
           const match =
             (item.dataset.name ?? '').includes(q) && (!status || item.dataset.status === status);
           if (match) matched++;
-          item.hidden = !match || (capped && matched > limit);
+          const hide = !match || (capped && matched > limit);
+          if (item.hidden && !hide) item.classList.add('revealed');
+          item.hidden = hide;
         }
         const empty = group.querySelector<HTMLElement>('[data-group-empty]');
         if (empty) empty.hidden = items.length === 0 || matched > 0;

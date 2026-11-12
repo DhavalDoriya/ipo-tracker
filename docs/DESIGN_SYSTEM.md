@@ -48,7 +48,14 @@ Roboto (self-hosted), fallback `Arial, sans-serif`.
 - Spacing: `--space-1..6` = 4, 8, 12, 16, 20, 24px; `--space-section` = 48px (96px from 569px up).
 - Radius: `--radius-sm` 8px (inputs, table), `--radius-md` 24px (cards), `--radius-pill` 9999px (buttons, chips).
 - Shadow: `--shadow-card` = `rgba(60, 64, 67, 0.16) 0 2px 6px 0`.
-- Motion: `--dur-fast` 50ms, `--dur-base` 250ms, `--ease` `cubic-bezier(0.38, 0.72, 0, 1)`. All transitions off under `prefers-reduced-motion`.
+- Motion: `--dur-fast` 50ms, `--dur-base` 250ms, `--dur-slow` 500ms, `--ease` `cubic-bezier(0.38, 0.72, 0, 1)`. All motion is off under `prefers-reduced-motion`.
+
+## Motion
+Little, and each piece has a job. Do not add entrance animations to sections or cards on load.
+- **Page entrance** (one per page): the heading block (`.hero`, `.page-head`) rises 8px and fades in, its children 70ms apart.
+- **Between pages**: a browser cross-fade (`@view-transition`); browsers without it just navigate.
+- **Timeline**: the progress line draws from left to right the first time a card scrolls into view.
+- **Response to an action**: cards lift 2px on hover; buttons press in; the menu sheet drops in; the theme icon turns in after a switch; cards brought back by search, a filter chip or "Show all" fade up.
 
 ## Components and states
 Shared classes live in `global.css`: `.card`, `.btn`, `.btn-tonal`, `.rows`, `.actions`, `.grid`.

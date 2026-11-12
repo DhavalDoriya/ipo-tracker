@@ -27,6 +27,7 @@
   buttons.forEach((button) =>
     button.addEventListener('click', () => {
       root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      button.classList.add('switched');
       try {
         localStorage.setItem('theme', root.dataset.theme);
       } catch {
@@ -56,6 +57,17 @@
   .toggle:hover {
     background: var(--color-surface);
     color: var(--color-text);
+  }
+
+  .switched svg {
+    animation: turn var(--dur-slow) var(--ease);
+  }
+
+  @keyframes turn {
+    from {
+      opacity: 0;
+      transform: rotate(-90deg) scale(0.6);
+    }
   }
 
   .sun {

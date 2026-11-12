@@ -60,6 +60,7 @@
 
   --dur-fast: 50ms;
   --dur-base: 250ms;
+  --dur-slow: 500ms;
   --ease: cubic-bezier(0.38, 0.72, 0, 1);
 
   --page-width: 1120px;
@@ -226,7 +227,8 @@ a {
   padding: var(--space-4);
   transition:
     box-shadow var(--dur-base) var(--ease),
-    border-color var(--dur-base) var(--ease);
+    border-color var(--dur-base) var(--ease),
+    transform var(--dur-base) var(--ease);
 }
 
 @media (min-width: 569px) {
@@ -238,6 +240,12 @@ a {
 .card:hover {
   box-shadow: var(--shadow-card);
   border-color: transparent;
+  transform: translateY(-2px);
+}
+
+/* A card that a filter or "Show all" has just brought back. */
+.card.revealed {
+  animation: rise var(--dur-base) var(--ease) both;
 }
 
 .card[hidden] {
@@ -259,7 +267,9 @@ a {
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
-  transition: box-shadow var(--dur-base) var(--ease);
+  transition:
+    box-shadow var(--dur-base) var(--ease),
+    transform var(--dur-fast) var(--ease);
 }
 
 .btn:hover {
@@ -268,6 +278,7 @@ a {
 
 .btn:active {
   box-shadow: none;
+  transform: scale(0.98);
 }
 
 .btn-tonal {
@@ -342,6 +353,43 @@ a {
 
 .prose li + li {
   margin-top: var(--space-2);
+}
+
+/* Motion. One entrance per page (the heading block), a cross-fade between pages, and
+   small responses to what the visitor does. Everything is off under reduced motion. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.hero > *,
+.page-head > * {
+  animation: rise var(--dur-slow) var(--ease) both;
+}
+
+.hero > :nth-child(2),
+.page-head > :nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.hero > :nth-child(3),
+.page-head > :nth-child(3) {
+  animation-delay: 140ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
 }
 
 .visually-hidden {
