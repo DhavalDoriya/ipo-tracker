@@ -37,8 +37,8 @@ GitHub Actions cron ──> scripts/scrape.py ──> data/*.json ──> valida
 ## Environments
 | Env | How | URL |
 | --- | --- | --- |
-| Local | `npm run dev` | `http://localhost:4321/ipo-update/` |
-| Production | `deploy.yml` | `https://<user>.github.io/ipo-update/` |
+| Local | `npm run dev` | `http://localhost:4321/ipo-tracker/` |
+| Production | `deploy.yml` | `https://<user>.github.io/ipo-tracker/` |
 
 `SITE_URL` and `BASE_PATH` env vars override the defaults in `astro.config.mjs`.
 
@@ -50,7 +50,7 @@ GitHub Actions cron ──> scripts/scrape.py ──> data/*.json ──> valida
 ## Decision log
 | Decision | Why |
 | --- | --- |
-| Repo and base path are `ipo-update`, not the brief's `ipo-portal` | Matches the project folder |
+| Repo and base path are `ipo-tracker` (deploy base follows the repo name via `BASE_PATH`) | Wrong base path = no CSS on Pages |
 | Node 24 in CI | Astro 7 requires Node >= 22.23 |
 | `update-data.yml` calls `deploy.yml` via `workflow_call` | Pushes made with `GITHUB_TOKEN` do not trigger other workflows |
 | Scraper writes nothing when content is unchanged | Avoids a commit and deploy every day |

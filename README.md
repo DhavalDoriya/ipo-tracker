@@ -1,4 +1,4 @@
-# IPO Update
+# IPO Tracker
 
 A free, static IPO information portal for the Indian market: mainboard and SME IPOs, a buyback calendar, and a 14-point analysis checklist. Built with Astro, fed by JSON files, refreshed by a scheduled Python scraper in GitHub Actions, hosted on GitHub Pages.
 
@@ -18,7 +18,7 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:4321/ipo-update/`.
+Open `http://localhost:4321/ipo-tracker/`.
 
 Checks:
 
@@ -73,7 +73,7 @@ Field reference: [docs/DATABASE.md](docs/DATABASE.md).
 
 ## Deploying to GitHub Pages
 
-1. Create a public repository named `ipo-update` and push `main`.
+1. Create a public repository named `ipo-tracker` and push `main`.
 2. Settings -> Pages -> Source: **GitHub Actions**.
 3. If the repository name or owner differs, set repository variables or edit the defaults in `astro.config.mjs` (`SITE_URL`, `BASE_PATH`).
 

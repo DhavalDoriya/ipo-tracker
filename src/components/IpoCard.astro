@@ -108,10 +108,11 @@ const sourceHost = ipo.source_url ? new URL(ipo.source_url).hostname.replace(/^w
     {
       (checklistSlug || ipo.source_url) && (
         <p class="links">
-          {checklistSlug && <a href={url(`/checklist/${checklistSlug}/`)}>Analysis checklist</a>}
+          {checklistSlug && <a class="btn btn-tonal" href={url(`/checklist/${checklistSlug}/`)}>Analysis checklist</a>}
           {ipo.source_url && (
-            <a href={ipo.source_url} rel="noopener noreferrer">
+            <a class="btn btn-outline" href={ipo.source_url} rel="noopener noreferrer">
               View on {sourceHost}
+              <svg class="ext" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3ZM5 5h6v2H5v12h12v-6h2v8H3V5h2Z" fill="currentColor" /></svg>
             </a>
           )}
         </p>
@@ -183,17 +184,4 @@ const sourceHost = ipo.source_url ? new URL(ipo.source_url).hostname.replace(/^w
     font: var(--text-small);
   }
 
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0 var(--space-5);
-    margin-top: var(--space-2);
-  }
-
-  .links a {
-    display: inline-flex;
-    align-items: center;
-    min-height: var(--touch);
-    font-weight: 500;
-  }
 </style>

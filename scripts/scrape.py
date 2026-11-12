@@ -27,7 +27,7 @@ FILING_SPLIT_RE = re.compile(
     re.I,
 )
 
-USER_AGENT = "ipo-update-bot/0.1 (+https://github.com/DhavalDoriya/ipo-update)"
+USER_AGENT = "ipo-tracker-bot/0.1 (+https://github.com/DhavalDoriya/ipo-tracker)"
 MIN_INTERVAL = 1.0  # seconds between requests
 
 # Fields a source may map a table column to.

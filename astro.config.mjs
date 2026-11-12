@@ -3,7 +3,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 // SITE_URL and BASE_PATH let a fork or custom domain deploy without editing this file.
 export default defineConfig({
   site: process.env.SITE_URL ?? 'https://dhavaldoriya.github.io',
-  base: process.env.BASE_PATH ?? '/ipo-update',
+  base: process.env.BASE_PATH ?? '/ipo-tracker',
   output: 'static',
   trailingSlash: 'always',
   build: { format: 'directory' },

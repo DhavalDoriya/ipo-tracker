@@ -252,23 +252,27 @@ a {
   display: none;
 }
 
-/* Pill buttons. .btn is filled; add .btn-tonal for the quieter variant. */
+/* Pill buttons. .btn is filled; .btn-tonal is quieter; .btn-outline is the lightest. */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-2);
   min-height: var(--touch);
-  padding-inline: var(--space-6);
-  border: 0;
+  padding-inline: var(--space-5);
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
   background: var(--color-primary);
   color: var(--color-on-primary);
   font: var(--text-body);
   font-weight: 500;
+  text-align: center;
   text-decoration: none;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   transition:
     box-shadow var(--dur-base) var(--ease),
+    background-color var(--dur-base) var(--ease),
     transform var(--dur-fast) var(--ease);
 }
 
@@ -278,7 +282,20 @@ a {
 
 .btn:active {
   box-shadow: none;
-  transform: scale(0.98);
+  transform: scale(0.97);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
 
 .btn-tonal {
@@ -286,8 +303,36 @@ a {
   color: var(--color-on-primary-container);
 }
 
+.btn-outline {
+  background: transparent;
+  border-color: var(--color-border);
+  color: var(--color-link);
+}
+
+.btn .ext {
+  flex: none;
+}
+
 .btn[hidden] {
   display: none;
+}
+
+/* Card footer links: stacked full-width buttons on phones, side by side from tablet up. */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.links .btn {
+  flex: 1 1 100%;
+}
+
+@media (min-width: 569px) {
+  .links .btn {
+    flex: 0 1 auto;
+  }
 }
 
 .actions {
@@ -408,5 +453,11 @@ a {
     transition: none !important;
     animation: none !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 568px) {
+  .actions .btn {
+    flex: 1 1 100%;
   }
 }

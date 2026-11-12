@@ -1,4 +1,4 @@
-# PRD: IPO Update
+# PRD: IPO Tracker
 
 ## Problem
 Retail investors in India check several sites to find which IPOs are open, their price band, lot size and subscription, and have no structured way to judge an issue. Existing portals are ad-heavy and slow.

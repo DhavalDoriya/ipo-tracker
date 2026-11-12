@@ -25,7 +25,7 @@ Static IPO information portal for the Indian market. Astro 7 site built from JSO
 
 ## Commands
 ```bash
-npm run dev        # local site at /ipo-update/
+npm run dev        # local site at /ipo-tracker/
 npm run check      # typecheck
 npm run build      # static build to dist/
 python3 scripts/validate.py

@@ -35,6 +35,9 @@ jobs:
       - run: python scripts/validate.py
       - run: npm run check
       - run: npm run build
+        env:
+          # Follows the repo name so a rename can never break CSS/JS links.
+          BASE_PATH: /${{ github.event.repository.name }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
