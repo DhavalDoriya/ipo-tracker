@@ -1,7 +1,27 @@
 {
-  "updated_at": "2026-11-12T10:49:17+00:00",
+  "updated_at": "2026-11-13T11:26:43+00:00",
   "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
+    {
+      "id": "crystal-crop-protection-limited",
+      "name": "Crystal Crop Protection Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "RHP filing, 12 Nov 2026",
+      "stage": "RHP",
+      "filed_date": "2026-11-12",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/crystal-crop-protection-limited-rhp_105734.html"
+    },
+    {
+      "id": "sitaram-denims-india-ltd",
+      "name": "Sitaram Denims India Ltd",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 13 Nov 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-11-13",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/sitaram-denims-india-ltd-drhp_105736.html"
+    },
     {
       "id": "hindustan-coca-cola-holdings-limited",
       "name": "Hindustan Coca-Cola Holdings Limited",
@@ -231,16 +251,6 @@
       "stage": "DRHP",
       "filed_date": "2026-10-05",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/b-s-sponge-limited-drhp_105023.html"
-    },
-    {
-      "id": "everbrands-india-limited",
-      "name": "Everbrands India Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "DRHP filing, 5 Oct 2026",
-      "stage": "DRHP",
-      "filed_date": "2026-10-05",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/everbrands-india-limited-drhp_105022.html"
     }
   ]
 }
