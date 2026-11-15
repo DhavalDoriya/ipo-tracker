@@ -1,17 +1,7 @@
 {
-  "updated_at": "2026-11-13T11:26:43+00:00",
+  "updated_at": "2026-11-15T11:23:04+00:00",
   "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
-    {
-      "id": "crystal-crop-protection-limited",
-      "name": "Crystal Crop Protection Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "RHP filing, 12 Nov 2026",
-      "stage": "RHP",
-      "filed_date": "2026-11-12",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/crystal-crop-protection-limited-rhp_105734.html"
-    },
     {
       "id": "sitaram-denims-india-ltd",
       "name": "Sitaram Denims India Ltd",

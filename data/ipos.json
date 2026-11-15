@@ -1,7 +1,25 @@
 {
-  "updated_at": "2026-11-12T10:15:39+00:00",
+  "updated_at": "2026-11-15T11:22:58+00:00",
   "source": "Groww IPO page",
   "ipos": [
+    {
+      "id": "crystal-crop-protection",
+      "name": "Crystal Crop Protection",
+      "type": "mainboard",
+      "exchange": null,
+      "status": "upcoming",
+      "open_date": "2026-11-18",
+      "close_date": null,
+      "listing_date": null,
+      "offer_price": null,
+      "list_price": null,
+      "lot_size": null,
+      "issue_size": null,
+      "subscription": null,
+      "subscription_breakup": null,
+      "gmp": null,
+      "source_url": "https://groww.in/ipo/crystal-crop-protection-ipo"
+    },
     {
       "id": "antala-industries",
       "name": "Antala Industries",
@@ -505,48 +523,6 @@
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/fusion-cx-ipo"
-    },
-    {
-      "id": "hd-fire-protect",
-      "name": "HD Fire Protect",
-      "type": "mainboard",
-      "exchange": null,
-      "status": "listed",
-      "open_date": "2026-10-13",
-      "close_date": "2026-10-15",
-      "listing_date": "2026-10-21",
-      "offer_price": {
-        "min": 271,
-        "max": 271
-      },
-      "list_price": 335,
-      "lot_size": null,
-      "issue_size": null,
-      "subscription": "130.81x",
-      "subscription_breakup": null,
-      "gmp": null,
-      "source_url": "https://groww.in/ipo/hd-fire-protect-ipo"
-    },
-    {
-      "id": "vaibhav-vyapar",
-      "name": "Vaibhav Vyapar",
-      "type": "sme",
-      "exchange": null,
-      "status": "listed",
-      "open_date": "2026-10-13",
-      "close_date": "2026-10-15",
-      "listing_date": "2026-10-21",
-      "offer_price": {
-        "min": 54,
-        "max": 54
-      },
-      "list_price": 52.9,
-      "lot_size": null,
-      "issue_size": null,
-      "subscription": "3.03x",
-      "subscription_breakup": null,
-      "gmp": null,
-      "source_url": "https://groww.in/ipo/vaibhav-vyapaar-ipo"
     }
   ]
 }
