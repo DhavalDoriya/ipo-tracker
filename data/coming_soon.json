@@ -1,7 +1,17 @@
 {
-  "updated_at": "2026-11-15T11:23:04+00:00",
+  "updated_at": "2026-11-16T11:55:57+00:00",
   "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
+    {
+      "id": "mahanadi-coalfields-limited",
+      "name": "Mahanadi Coalfields Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "RHP filing, 13 Nov 2026",
+      "stage": "RHP",
+      "filed_date": "2026-11-13",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/mahanadi-coalfields-limited-rhp_105777.html"
+    },
     {
       "id": "sitaram-denims-india-ltd",
       "name": "Sitaram Denims India Ltd",
@@ -11,6 +21,16 @@
       "stage": "DRHP",
       "filed_date": "2026-11-13",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/sitaram-denims-india-ltd-drhp_105736.html"
+    },
+    {
+      "id": "learnfluence-education-limited",
+      "name": "Learnfluence Education Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 12 Nov 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-11-12",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/learnfluence-education-limited-addendum-to-drhp_105776.html"
     },
     {
       "id": "hindustan-coca-cola-holdings-limited",
@@ -231,16 +251,6 @@
       "stage": "DRHP",
       "filed_date": "2026-10-05",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/inox-air-products-limited-drhp_105024.html"
-    },
-    {
-      "id": "b-s-sponge-limited",
-      "name": "B S Sponge Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "DRHP filing, 5 Oct 2026",
-      "stage": "DRHP",
-      "filed_date": "2026-10-05",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/b-s-sponge-limited-drhp_105023.html"
     }
   ]
 }
