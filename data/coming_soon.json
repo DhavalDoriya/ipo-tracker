@@ -1,16 +1,26 @@
 {
-  "updated_at": "2026-11-16T11:55:57+00:00",
+  "updated_at": "2026-11-17T12:19:23+00:00",
   "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
     {
-      "id": "mahanadi-coalfields-limited",
-      "name": "Mahanadi Coalfields Limited",
+      "id": "il-jin-electronics-india-limited",
+      "name": "Il Jin Electronics (India) Limited",
       "type": "mainboard",
       "exchange": null,
-      "expected": "RHP filing, 13 Nov 2026",
-      "stage": "RHP",
-      "filed_date": "2026-11-13",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/mahanadi-coalfields-limited-rhp_105777.html"
+      "expected": "DRHP filing, 17 Nov 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-11-17",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/il-jin-electronics-india-limited-drhp_105795.html"
+    },
+    {
+      "id": "rediff-com-india-limited",
+      "name": "Rediff com India Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 14 Nov 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-11-14",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/rediff-com-india-limited-udrhp-i_105794.html"
     },
     {
       "id": "sitaram-denims-india-ltd",
@@ -231,26 +241,6 @@
       "stage": "DRHP",
       "filed_date": "2026-10-05",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/electromech-infraprojects-limited-drhp_105027.html"
-    },
-    {
-      "id": "baanganga-gold-diamond-i-limited",
-      "name": "Baanganga Gold & Diamond (I) Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "DRHP filing, 5 Oct 2026",
-      "stage": "DRHP",
-      "filed_date": "2026-10-05",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/baanganga-gold-and-diamond-i-limited-drhp_105025.html"
-    },
-    {
-      "id": "inox-air-products-limited",
-      "name": "Inox Air Products Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "DRHP filing, 5 Oct 2026",
-      "stage": "DRHP",
-      "filed_date": "2026-10-05",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/inox-air-products-limited-drhp_105024.html"
     }
   ]
 }

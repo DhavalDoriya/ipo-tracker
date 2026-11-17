@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-16T11:55:51+00:00",
+  "updated_at": "2026-11-17T12:19:16+00:00",
   "source": "Groww IPO page",
   "ipos": [
     {
@@ -19,6 +19,24 @@
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/crystal-crop-protection-ipo"
+    },
+    {
+      "id": "mahanadi-coalfields",
+      "name": "Mahanadi Coalfields",
+      "type": "mainboard",
+      "exchange": null,
+      "status": "upcoming",
+      "open_date": "2026-11-19",
+      "close_date": "2026-11-23",
+      "listing_date": null,
+      "offer_price": null,
+      "list_price": null,
+      "lot_size": null,
+      "issue_size": null,
+      "subscription": "0.00x",
+      "subscription_breakup": null,
+      "gmp": null,
+      "source_url": "https://groww.in/ipo/mahanadi-coalfields-ipo"
     },
     {
       "id": "antala-industries",
