@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-17T12:19:23+00:00",
+  "updated_at": "2026-11-18T12:06:09+00:00",
   "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
     {
@@ -214,13 +214,13 @@
     },
     {
       "id": "pm-cona-industries-limited",
-      "name": "Pm Cona Industries Limited",
+      "name": "PM CONA Industries Limited",
       "type": "mainboard",
       "exchange": null,
       "expected": "DRHP filing, 6 Oct 2026",
       "stage": "DRHP",
       "filed_date": "2026-10-06",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/pm-cona-industries-limited_105041.html"
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/pm-cona-industries-limited-drhp_105041.html"
     },
     {
       "id": "pentacle-consultants-i-limited",
