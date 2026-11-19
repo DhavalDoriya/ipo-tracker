@@ -1,7 +1,27 @@
 {
-  "updated_at": "2026-11-18T12:06:09+00:00",
+  "updated_at": "2026-11-19T12:00:16+00:00",
   "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
+    {
+      "id": "chartered-speed-limited-addendum-to-the-drhp",
+      "name": "Chartered Speed Limited_Addendum to the DRHP",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 19 Nov 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-11-19",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/chartered-speed-limited-addendum-to-the-drhp_105815.html"
+    },
+    {
+      "id": "eldorado-agritech-limited",
+      "name": "Eldorado Agritech Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 19 Nov 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-11-19",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/eldorado-agritech-limited-addendum-to-the-drhp_105811.html"
+    },
     {
       "id": "il-jin-electronics-india-limited",
       "name": "Il Jin Electronics (India) Limited",
@@ -231,16 +251,6 @@
       "stage": "DRHP",
       "filed_date": "2026-10-06",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/pentacle-consultants-i-limited_105039.html"
-    },
-    {
-      "id": "electromech-infraprojects-limited",
-      "name": "Electromech Infraprojects Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "DRHP filing, 5 Oct 2026",
-      "stage": "DRHP",
-      "filed_date": "2026-10-05",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/electromech-infraprojects-limited-drhp_105027.html"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-18T12:06:03+00:00",
+  "updated_at": "2026-11-19T12:00:12+00:00",
   "source": "Groww IPO page",
   "ipos": [
     {
@@ -15,7 +15,7 @@
       "list_price": null,
       "lot_size": null,
       "issue_size": null,
-      "subscription": "1.40x",
+      "subscription": "2.84x",
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/crystal-crop-protection-ipo"
@@ -25,7 +25,7 @@
       "name": "Mahanadi Coalfields",
       "type": "mainboard",
       "exchange": null,
-      "status": "upcoming",
+      "status": "open",
       "open_date": "2026-11-19",
       "close_date": "2026-11-23",
       "listing_date": null,
@@ -33,7 +33,7 @@
       "list_price": null,
       "lot_size": null,
       "issue_size": null,
-      "subscription": "0.00x",
+      "subscription": "0.38x",
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/mahanadi-coalfields-ipo"
@@ -43,7 +43,7 @@
       "name": "Watrana Rentals",
       "type": "sme",
       "exchange": null,
-      "status": "upcoming",
+      "status": "open",
       "open_date": "2026-11-19",
       "close_date": "2026-11-23",
       "listing_date": null,
@@ -51,7 +51,7 @@
       "list_price": null,
       "lot_size": null,
       "issue_size": null,
-      "subscription": "0.00x",
+      "subscription": "2.96x",
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/watrana-rentals-ipo"
@@ -412,111 +412,6 @@
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/reliance-jio-ipo"
-    },
-    {
-      "id": "zetwerk",
-      "name": "Zetwerk",
-      "type": "mainboard",
-      "exchange": null,
-      "status": "listed",
-      "open_date": "2026-10-15",
-      "close_date": "2026-10-19",
-      "listing_date": "2026-10-23",
-      "offer_price": {
-        "min": 151,
-        "max": 151
-      },
-      "list_price": 159.25,
-      "lot_size": null,
-      "issue_size": null,
-      "subscription": "3.06x",
-      "subscription_breakup": null,
-      "gmp": null,
-      "source_url": "https://groww.in/ipo/zetwerk-ipo"
-    },
-    {
-      "id": "sahajanand-medical-technologies",
-      "name": "Sahajanand Medical Technologies",
-      "type": "mainboard",
-      "exchange": null,
-      "status": "listed",
-      "open_date": "2026-10-15",
-      "close_date": "2026-10-19",
-      "listing_date": "2026-10-23",
-      "offer_price": {
-        "min": 344,
-        "max": 344
-      },
-      "list_price": 371.15,
-      "lot_size": null,
-      "issue_size": null,
-      "subscription": "14.13x",
-      "subscription_breakup": null,
-      "gmp": null,
-      "source_url": "https://groww.in/ipo/sahajanand-medical-technologies-ipo"
-    },
-    {
-      "id": "tonbo-imaging",
-      "name": "Tonbo Imaging",
-      "type": "mainboard",
-      "exchange": null,
-      "status": "listed",
-      "open_date": "2026-10-15",
-      "close_date": "2026-10-19",
-      "listing_date": "2026-10-23",
-      "offer_price": {
-        "min": 700,
-        "max": 700
-      },
-      "list_price": 1160,
-      "lot_size": null,
-      "issue_size": null,
-      "subscription": "135.65x",
-      "subscription_breakup": null,
-      "gmp": null,
-      "source_url": "https://groww.in/ipo/tonbo-imaging-ipo"
-    },
-    {
-      "id": "shellz-india",
-      "name": "Shellz India",
-      "type": "sme",
-      "exchange": null,
-      "status": "listed",
-      "open_date": "2026-10-15",
-      "close_date": "2026-10-19",
-      "listing_date": "2026-10-23",
-      "offer_price": {
-        "min": 179,
-        "max": 179
-      },
-      "list_price": 179,
-      "lot_size": null,
-      "issue_size": null,
-      "subscription": "50.49x",
-      "subscription_breakup": null,
-      "gmp": null,
-      "source_url": "https://groww.in/ipo/shellz-india-ipo"
-    },
-    {
-      "id": "bonfiglioli-transmissions",
-      "name": "Bonfiglioli Transmissions",
-      "type": "mainboard",
-      "exchange": null,
-      "status": "listed",
-      "open_date": "2026-10-15",
-      "close_date": "2026-10-19",
-      "listing_date": "2026-10-23",
-      "offer_price": {
-        "min": 586,
-        "max": 586
-      },
-      "list_price": 586,
-      "lot_size": null,
-      "issue_size": null,
-      "subscription": "45.98x",
-      "subscription_breakup": null,
-      "gmp": null,
-      "source_url": "https://groww.in/ipo/bonfiglioli-transmissions-ipo"
     }
   ]
 }
