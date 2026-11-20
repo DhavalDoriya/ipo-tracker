@@ -1,25 +1,7 @@
 {
-  "updated_at": "2026-11-19T12:00:12+00:00",
+  "updated_at": "2026-11-20T12:01:53+00:00",
   "source": "Groww IPO page",
   "ipos": [
-    {
-      "id": "crystal-crop-protection",
-      "name": "Crystal Crop Protection",
-      "type": "mainboard",
-      "exchange": null,
-      "status": "open",
-      "open_date": "2026-11-18",
-      "close_date": "2026-11-20",
-      "listing_date": null,
-      "offer_price": null,
-      "list_price": null,
-      "lot_size": null,
-      "issue_size": null,
-      "subscription": "2.84x",
-      "subscription_breakup": null,
-      "gmp": null,
-      "source_url": "https://groww.in/ipo/crystal-crop-protection-ipo"
-    },
     {
       "id": "mahanadi-coalfields",
       "name": "Mahanadi Coalfields",
@@ -33,7 +15,7 @@
       "list_price": null,
       "lot_size": null,
       "issue_size": null,
-      "subscription": "0.38x",
+      "subscription": "0.48x",
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/mahanadi-coalfields-ipo"
@@ -51,10 +33,31 @@
       "list_price": null,
       "lot_size": null,
       "issue_size": null,
-      "subscription": "2.96x",
+      "subscription": "10.88x",
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/watrana-rentals-ipo"
+    },
+    {
+      "id": "crystal-crop-protection",
+      "name": "Crystal Crop Protection",
+      "type": "mainboard",
+      "exchange": null,
+      "status": "open",
+      "open_date": "2026-11-18",
+      "close_date": "2026-11-20",
+      "listing_date": "2026-11-26",
+      "offer_price": {
+        "min": 272,
+        "max": 272
+      },
+      "list_price": null,
+      "lot_size": null,
+      "issue_size": null,
+      "subscription": "16.63x",
+      "subscription_breakup": null,
+      "gmp": null,
+      "source_url": "https://groww.in/ipo/crystal-crop-protection-ipo"
     },
     {
       "id": "antala-industries",

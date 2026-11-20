@@ -1,7 +1,17 @@
 {
-  "updated_at": "2026-11-19T12:00:16+00:00",
+  "updated_at": "2026-11-20T12:01:58+00:00",
   "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
+    {
+      "id": "foodlink-f-b-holdings-india-limited",
+      "name": "Foodlink F&B Holdings India Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "RHP filing, 19 Nov 2026",
+      "stage": "RHP",
+      "filed_date": "2026-11-19",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/foodlink-fandb-holdings-india-limited-rhp_105865.html"
+    },
     {
       "id": "chartered-speed-limited-addendum-to-the-drhp",
       "name": "Chartered Speed Limited_Addendum to the DRHP",
@@ -21,6 +31,16 @@
       "stage": "DRHP",
       "filed_date": "2026-11-19",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/eldorado-agritech-limited-addendum-to-the-drhp_105811.html"
+    },
+    {
+      "id": "sagar-defence-engineering-limited",
+      "name": "Sagar Defence Engineering Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 19 Nov 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-11-19",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/sagar-defence-engineering-limited-udrhp-i_105801.html"
     },
     {
       "id": "il-jin-electronics-india-limited",
@@ -241,16 +261,6 @@
       "stage": "DRHP",
       "filed_date": "2026-10-06",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/pm-cona-industries-limited-drhp_105041.html"
-    },
-    {
-      "id": "pentacle-consultants-i-limited",
-      "name": "Pentacle Consultants I Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "DRHP filing, 6 Oct 2026",
-      "stage": "DRHP",
-      "filed_date": "2026-10-06",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/pentacle-consultants-i-limited_105039.html"
     }
   ]
 }
