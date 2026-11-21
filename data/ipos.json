@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-20T12:01:53+00:00",
+  "updated_at": "2026-11-21T11:37:09+00:00",
   "source": "Groww IPO page",
   "ipos": [
     {
@@ -33,7 +33,7 @@
       "list_price": null,
       "lot_size": null,
       "issue_size": null,
-      "subscription": "10.88x",
+      "subscription": "11.10x",
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/watrana-rentals-ipo"
@@ -43,7 +43,7 @@
       "name": "Crystal Crop Protection",
       "type": "mainboard",
       "exchange": null,
-      "status": "open",
+      "status": "closed",
       "open_date": "2026-11-18",
       "close_date": "2026-11-20",
       "listing_date": "2026-11-26",
