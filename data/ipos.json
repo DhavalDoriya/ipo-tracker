@@ -1,25 +1,7 @@
 {
-  "updated_at": "2026-11-21T11:37:09+00:00",
+  "updated_at": "2026-11-23T13:30:10+00:00",
   "source": "Groww IPO page",
   "ipos": [
-    {
-      "id": "mahanadi-coalfields",
-      "name": "Mahanadi Coalfields",
-      "type": "mainboard",
-      "exchange": null,
-      "status": "open",
-      "open_date": "2026-11-19",
-      "close_date": "2026-11-23",
-      "listing_date": null,
-      "offer_price": null,
-      "list_price": null,
-      "lot_size": null,
-      "issue_size": null,
-      "subscription": "0.48x",
-      "subscription_breakup": null,
-      "gmp": null,
-      "source_url": "https://groww.in/ipo/mahanadi-coalfields-ipo"
-    },
     {
       "id": "watrana-rentals",
       "name": "Watrana Rentals",
@@ -28,15 +10,39 @@
       "status": "open",
       "open_date": "2026-11-19",
       "close_date": "2026-11-23",
-      "listing_date": null,
-      "offer_price": null,
+      "listing_date": "2026-11-27",
+      "offer_price": {
+        "min": 245,
+        "max": 245
+      },
       "list_price": null,
       "lot_size": null,
       "issue_size": null,
-      "subscription": "11.10x",
+      "subscription": "138.53x",
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/watrana-rentals-ipo"
+    },
+    {
+      "id": "mahanadi-coalfields",
+      "name": "Mahanadi Coalfields",
+      "type": "mainboard",
+      "exchange": null,
+      "status": "open",
+      "open_date": "2026-11-19",
+      "close_date": "2026-11-23",
+      "listing_date": "2026-11-27",
+      "offer_price": {
+        "min": 136,
+        "max": 136
+      },
+      "list_price": null,
+      "lot_size": null,
+      "issue_size": null,
+      "subscription": "1.51x",
+      "subscription_breakup": null,
+      "gmp": null,
+      "source_url": "https://groww.in/ipo/mahanadi-coalfields-ipo"
     },
     {
       "id": "crystal-crop-protection",
@@ -373,48 +379,6 @@
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/core4-engineers-ipo"
-    },
-    {
-      "id": "paras-healthcare",
-      "name": "Paras Healthcare",
-      "type": "mainboard",
-      "exchange": null,
-      "status": "listed",
-      "open_date": "2026-10-21",
-      "close_date": "2026-10-23",
-      "listing_date": "2026-10-28",
-      "offer_price": {
-        "min": 693,
-        "max": 693
-      },
-      "list_price": 720,
-      "lot_size": null,
-      "issue_size": null,
-      "subscription": "2.22x",
-      "subscription_breakup": null,
-      "gmp": null,
-      "source_url": "https://groww.in/ipo/paras-healthcare-ipo"
-    },
-    {
-      "id": "jio-platforms",
-      "name": "Jio Platforms",
-      "type": "mainboard",
-      "exchange": null,
-      "status": "listed",
-      "open_date": "2026-10-21",
-      "close_date": "2026-10-23",
-      "listing_date": "2026-10-28",
-      "offer_price": {
-        "min": 1119,
-        "max": 1119
-      },
-      "list_price": 1358,
-      "lot_size": null,
-      "issue_size": null,
-      "subscription": "21.46x",
-      "subscription_breakup": null,
-      "gmp": null,
-      "source_url": "https://groww.in/ipo/reliance-jio-ipo"
     }
   ]
 }

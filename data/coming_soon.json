@@ -1,7 +1,27 @@
 {
-  "updated_at": "2026-11-20T12:01:58+00:00",
+  "updated_at": "2026-11-23T13:30:16+00:00",
   "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
+    {
+      "id": "monomark-engineering-india-limited",
+      "name": "Monomark Engineering (India) Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "RHP filing, 23 Nov 2026",
+      "stage": "RHP",
+      "filed_date": "2026-11-23",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/monomark-engineering-india-limited-rhp_105932.html"
+    },
+    {
+      "id": "matangi-rubber-limited",
+      "name": "Matangi Rubber Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "RHP filing, 20 Nov 2026",
+      "stage": "RHP",
+      "filed_date": "2026-11-20",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/matangi-rubber-limited-rhp_105931.html"
+    },
     {
       "id": "foodlink-f-b-holdings-india-limited",
       "name": "Foodlink F&B Holdings India Limited",
@@ -11,6 +31,16 @@
       "stage": "RHP",
       "filed_date": "2026-11-19",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/foodlink-fandb-holdings-india-limited-rhp_105865.html"
+    },
+    {
+      "id": "pride-hotels-limited",
+      "name": "Pride Hotels Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 23 Nov 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-11-23",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/pride-hotels-limited-addendum-to-the-drhp_105935.html"
     },
     {
       "id": "chartered-speed-limited-addendum-to-the-drhp",
@@ -223,16 +253,6 @@
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/oswal-cables-limited-addendum-to-drhp_105234.html"
     },
     {
-      "id": "matangi-rubber-limited",
-      "name": "Matangi Rubber Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "DRHP filing, 10 Oct 2026",
-      "stage": "DRHP",
-      "filed_date": "2026-10-10",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/matangi-rubber-limited-addendum-to-the-drhp_105143.html"
-    },
-    {
       "id": "grace-renewable-energy-limited",
       "name": "Grace Renewable Energy Limited",
       "type": "mainboard",
@@ -251,16 +271,6 @@
       "stage": "DRHP",
       "filed_date": "2026-10-07",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/integrum-energy-infrastructure-limited-drhp_105075.html"
-    },
-    {
-      "id": "pm-cona-industries-limited",
-      "name": "PM CONA Industries Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "DRHP filing, 6 Oct 2026",
-      "stage": "DRHP",
-      "filed_date": "2026-10-06",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/pm-cona-industries-limited-drhp_105041.html"
     }
   ]
 }
