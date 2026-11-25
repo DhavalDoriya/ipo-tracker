@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-24T14:08:53+00:00",
+  "updated_at": "2026-11-25T13:22:11+00:00",
   "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
     {
@@ -21,6 +21,16 @@
       "stage": "RHP",
       "filed_date": "2026-11-20",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/matangi-rubber-limited-rhp_105931.html"
+    },
+    {
+      "id": "nlc-india-renewables-limited",
+      "name": "NLC India Renewables Limited",
+      "type": "mainboard",
+      "exchange": null,
+      "expected": "DRHP filing, 25 Nov 2026",
+      "stage": "DRHP",
+      "filed_date": "2026-11-25",
+      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/nlc-india-renewables-limited-drhp_97166.html"
     },
     {
       "id": "pride-hotels-limited",
@@ -251,16 +261,6 @@
       "stage": "DRHP",
       "filed_date": "2026-10-07",
       "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/grace-renewable-energy-limited-drhp_105099.html"
-    },
-    {
-      "id": "integrum-energy-infrastructure-limited",
-      "name": "Integrum Energy Infrastructure Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "DRHP filing, 7 Oct 2026",
-      "stage": "DRHP",
-      "filed_date": "2026-10-07",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/oct-2026/integrum-energy-infrastructure-limited-drhp_105075.html"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-24T14:08:47+00:00",
+  "updated_at": "2026-11-25T13:22:04+00:00",
   "source": "Groww IPO page",
   "ipos": [
     {
@@ -25,7 +25,7 @@
       "name": "Shree Siddhivinayak Greentech",
       "type": "sme",
       "exchange": null,
-      "status": "upcoming",
+      "status": "open",
       "open_date": "2026-11-25",
       "close_date": "2026-11-27",
       "listing_date": null,
@@ -33,7 +33,7 @@
       "list_price": null,
       "lot_size": null,
       "issue_size": null,
-      "subscription": "0.00x",
+      "subscription": "0.38x",
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/shree-siddhivinayak-greentech-industries-ipo"
