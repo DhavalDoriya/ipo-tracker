@@ -1,17 +1,7 @@
 {
-  "updated_at": "2026-11-25T13:22:11+00:00",
+  "updated_at": "2026-11-26T13:00:34+00:00",
   "source": "SEBI public issue filings (RHP), SEBI public issue filings (DRHP)",
   "ipos": [
-    {
-      "id": "monomark-engineering-india-limited",
-      "name": "Monomark Engineering (India) Limited",
-      "type": "mainboard",
-      "exchange": null,
-      "expected": "RHP filing, 23 Nov 2026",
-      "stage": "RHP",
-      "filed_date": "2026-11-23",
-      "source_url": "https://www.sebi.gov.in/filings/public-issues/nov-2026/monomark-engineering-india-limited-rhp_105932.html"
-    },
     {
       "id": "matangi-rubber-limited",
       "name": "Matangi Rubber Limited",
