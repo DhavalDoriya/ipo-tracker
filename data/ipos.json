@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-26T13:00:29+00:00",
+  "updated_at": "2026-11-27T12:58:26+00:00",
   "source": "Groww IPO page",
   "ipos": [
     {
@@ -15,35 +15,17 @@
       "list_price": null,
       "lot_size": null,
       "issue_size": null,
-      "subscription": "1.08x",
+      "subscription": "1.47x",
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/foodlink-fb-holdings-ipo"
-    },
-    {
-      "id": "shree-siddhivinayak-greentech",
-      "name": "Shree Siddhivinayak Greentech",
-      "type": "sme",
-      "exchange": null,
-      "status": "open",
-      "open_date": "2026-11-25",
-      "close_date": "2026-11-27",
-      "listing_date": null,
-      "offer_price": null,
-      "list_price": null,
-      "lot_size": null,
-      "issue_size": null,
-      "subscription": "1.24x",
-      "subscription_breakup": null,
-      "gmp": null,
-      "source_url": "https://groww.in/ipo/shree-siddhivinayak-greentech-industries-ipo"
     },
     {
       "id": "airpro-technology",
       "name": "Airpro Technology",
       "type": "sme",
       "exchange": null,
-      "status": "upcoming",
+      "status": "open",
       "open_date": "2026-11-27",
       "close_date": "2026-12-01",
       "listing_date": null,
@@ -51,10 +33,28 @@
       "list_price": null,
       "lot_size": null,
       "issue_size": null,
-      "subscription": "0.00x",
+      "subscription": "0.75x",
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/airpro-technology-ipo"
+    },
+    {
+      "id": "matangi-rubber",
+      "name": "Matangi Rubber",
+      "type": "mainboard",
+      "exchange": null,
+      "status": "upcoming",
+      "open_date": "2026-12-01",
+      "close_date": null,
+      "listing_date": null,
+      "offer_price": null,
+      "list_price": null,
+      "lot_size": null,
+      "issue_size": null,
+      "subscription": null,
+      "subscription_breakup": null,
+      "gmp": null,
+      "source_url": "https://groww.in/ipo/matangi-rubber-ipo"
     },
     {
       "id": "a-j-packaging",
@@ -93,11 +93,32 @@
       "source_url": "https://groww.in/ipo/monomark-engineering-ipo"
     },
     {
+      "id": "shree-siddhivinayak-greentech",
+      "name": "Shree Siddhivinayak Greentech",
+      "type": "sme",
+      "exchange": null,
+      "status": "open",
+      "open_date": "2026-11-25",
+      "close_date": "2026-11-27",
+      "listing_date": "2026-12-02",
+      "offer_price": {
+        "min": 142,
+        "max": 142
+      },
+      "list_price": null,
+      "lot_size": null,
+      "issue_size": null,
+      "subscription": "1.65x",
+      "subscription_breakup": null,
+      "gmp": null,
+      "source_url": "https://groww.in/ipo/shree-siddhivinayak-greentech-industries-ipo"
+    },
+    {
       "id": "watrana-rentals",
       "name": "Watrana Rentals",
       "type": "sme",
       "exchange": null,
-      "status": "closed",
+      "status": "listed",
       "open_date": "2026-11-19",
       "close_date": "2026-11-23",
       "listing_date": "2026-11-27",
@@ -105,7 +126,7 @@
         "min": 245,
         "max": 245
       },
-      "list_price": null,
+      "list_price": 243,
       "lot_size": null,
       "issue_size": null,
       "subscription": "138.53x",
@@ -118,7 +139,7 @@
       "name": "Mahanadi Coalfields",
       "type": "mainboard",
       "exchange": null,
-      "status": "closed",
+      "status": "listed",
       "open_date": "2026-11-19",
       "close_date": "2026-11-23",
       "listing_date": "2026-11-27",
@@ -126,7 +147,7 @@
         "min": 136,
         "max": 136
       },
-      "list_price": null,
+      "list_price": 134,
       "lot_size": null,
       "issue_size": null,
       "subscription": "1.51x",
@@ -448,27 +469,6 @@
       "subscription_breakup": null,
       "gmp": null,
       "source_url": "https://groww.in/ipo/eaaa-india-alternatives-ipo"
-    },
-    {
-      "id": "core4-engineer",
-      "name": "Core4 Engineer",
-      "type": "sme",
-      "exchange": null,
-      "status": "listed",
-      "open_date": "2026-10-23",
-      "close_date": "2026-10-27",
-      "listing_date": "2026-10-30",
-      "offer_price": {
-        "min": 93,
-        "max": 93
-      },
-      "list_price": 74.4,
-      "lot_size": null,
-      "issue_size": null,
-      "subscription": "4.62x",
-      "subscription_breakup": null,
-      "gmp": null,
-      "source_url": "https://groww.in/ipo/core4-engineers-ipo"
     }
   ]
 }
